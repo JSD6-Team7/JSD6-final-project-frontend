@@ -1,0 +1,35 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.sidebar {
+  width: 368px;
+  height: 1024px;
+}
+.activity {
+  width: 1072px;
+  height: 1024px;
+}
+.sidebar-appLogo {
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-menu {
+  flex: 1;
+}
+.sidebar-signOut {
+  height: 529px;
+}
+.sidebar-appLogo p {
+  font-size: 21px;
+  font-weight: bold;
+  color: #45ae3a;
+}
