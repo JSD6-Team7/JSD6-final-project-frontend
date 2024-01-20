@@ -1,35 +1,47 @@
 * {
+  font-family: "Inter", sans-serif;
   margin: 0px;
   padding: 0px;
+  box-sizing: border-box;
 }
 .layout {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  width: 1440px;
+  height: 1024px;
 }
 .sidebar {
   width: 368px;
-  height: 1024px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 48px;
 }
 .activity {
   width: 1072px;
-  height: 1024px;
 }
 .sidebar-appLogo {
   height: 175px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .sidebar-menu {
   flex: 1;
+  padding: 0px 32px;
+  font-size: 24px;
 }
 .sidebar-signOut {
-  height: 529px;
+  text-align-last: center;
 }
 .sidebar-appLogo p {
   font-size: 21px;
   font-weight: bold;
   color: #45ae3a;
+}
+
+.ant-menu-item {
+  padding-inline: 0px !important;
+  margin-inline: 0px !important;
+  margin-block: 24px !important;
+  font-size: 16px;
 }
