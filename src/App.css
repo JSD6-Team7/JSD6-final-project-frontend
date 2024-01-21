@@ -15,7 +15,7 @@
   flex-direction: column;
   padding-bottom: 48px;
 }
-.activityList {
+.content {
   width: 1072px;
 }
 .sidebar-appLogo {
@@ -54,5 +54,119 @@
 }
 
 /* .ant-menu-item-active :hover{
-
 } */
+
+.activityCard {
+  padding: 96px 128px 42px 128px;
+}
+.activityCard-line2 {
+  width: 816px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 32px 0px;
+}
+.activityCard-addActivityButton {
+  color: #000000 !important;
+  background: transparent !important;
+  border: 2px solid #0000001a !important;
+  box-shadow: none !important;
+  width: 110px;
+  height: 40px;
+  font-size: 16px;
+}
+.activityCard-date {
+  margin-right: auto;
+}
+.activityCard-ListmemuLabel {
+  width: 816px;
+  height: 104px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 32px 0px;
+  border-top: 2px solid #0000001a;
+}
+.activityCard-card {
+  width: 816px;
+  height: 194px;
+  margin: 16px;
+  padding: 24px 32px;
+  border: 2px solid #0000001a;
+  border-radius: 16px;
+  display: flex;
+}
+.activityCard-card-imageContainer {
+  width: 146px;
+  height: 146px;
+  border-radius: 8px;
+  border: 2px solid #0000001a;
+  padding: 12px;
+  margin-right: 42px;
+}
+.activityCard-card-image {
+  width: 100%;
+  height: 100%;
+}
+.activityCard-card-topContent {
+  display: flex;
+  align-items: center;
+}
+.activityCard-card-content {
+  width: 546px;
+  height: 130px;
+}
+.activityCard-card-topContent-right {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+}
+.activityCard-card-topContent-right-timeCounting {
+  color: #000000;
+  background: transparent;
+  border: 2px solid #0000001a;
+  width: 113px;
+  height: 32px;
+  font-size: 21px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.anticon svg {
+  width: 24px;
+  height: 24px;
+}
+.editButton {
+  background: transparent;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #45ae3a;
+}
+.editButton:active {
+  background: transparent;
+  border: 2px solid white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #45ae3a !important;
+}
+.editButton:hover {
+  background: transparent;
+  border: 2px solid white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #45ae3a !important;
+}
+.activityCard-card-middleContent {
+  width: 564px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 8px 0px;
+}

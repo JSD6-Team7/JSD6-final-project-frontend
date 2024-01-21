@@ -1,5 +1,5 @@
 function ActivityForm() {
-  return <div className="activity">ActivityForm</div>;
+  return <div className="activity"></div>;
 }
 
 export default ActivityForm;
