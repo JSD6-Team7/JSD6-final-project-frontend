@@ -15,7 +15,7 @@
   flex-direction: column;
   padding-bottom: 48px;
 }
-.activity {
+.activityList {
   width: 1072px;
 }
 .sidebar-appLogo {
@@ -32,6 +32,7 @@
 }
 .sidebar-signOut {
   text-align-last: center;
+  font-size: 18px;
 }
 .sidebar-appLogo p {
   font-size: 21px;
@@ -43,5 +44,15 @@
   padding-inline: 0px !important;
   margin-inline: 0px !important;
   margin-block: 24px !important;
-  font-size: 16px;
+  font-size: 16px !important;
 }
+
+.ant-menu-item-selected {
+  color: #45ae3a !important;
+  border-right: solid #45ae3a;
+  border-radius: 1px !important;
+}
+
+/* .ant-menu-item-active :hover{
+
+} */

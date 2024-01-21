@@ -15,8 +15,16 @@ const items = [
     key: "videoTutorial",
     icon: <VideoCameraOutlined />,
   },
-  { label: "Progress", key: "progress", icon: <LineChartOutlined /> },
-  { label: "Profile", key: "profile", icon: <UserOutlined /> },
+  {
+    label: "Progress",
+    key: "progress",
+    icon: <LineChartOutlined />,
+  },
+  {
+    label: "Profile",
+    key: "profile",
+    icon: <UserOutlined />,
+  },
 ];
 
 function Sidebar() {
@@ -31,10 +39,10 @@ function Sidebar() {
         <p>Exercise</p>
       </div>
       <div className="sidebar-menu">
-        <Menu onClick={onMenuClick} mode="vertical" items={items} />
+        <Menu mode="vertical" items={items} onClick={onMenuClick} />
       </div>
       <Button type="text" className="sidebar-signOut" block>
-        <LogoutOutlined style={{ marginInlineEnd: "16px" }} />
+        <LogoutOutlined style={{ marginInlineEnd: "16px " }} />
         Sign out
       </Button>
     </div>

@@ -1,3 +1,5 @@
-const ActivityForm = () => {
-  return <>test</>;
-};
+function ActivityForm() {
+  return <div className="activity">ActivityForm</div>;
+}
+
+export default ActivityForm;

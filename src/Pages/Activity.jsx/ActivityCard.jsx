@@ -1,11 +1,5 @@
-import Layout from "../Layout";
-
 function ActivityCard() {
-  return (
-    <Layout>
-      <div className="activity">ActivityCard</div>
-    </Layout>
-  );
+  return <div className="activity">ActivityCard</div>;
 }
 
 export default ActivityCard;
