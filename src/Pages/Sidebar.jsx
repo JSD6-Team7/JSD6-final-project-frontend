@@ -1,12 +1,30 @@
-import { Menu } from "antd";
-import { HomeFilled } from "@ant-design/icons";
+import { Menu, Button } from "antd";
+import {
+  FileTextOutlined,
+  VideoCameraOutlined,
+  LineChartOutlined,
+  UserOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 const items = [
-  { label: "Activity", key: "activity", icon: <HomeFilled /> },
-  { label: "Video Tutorial", key: "videoTutorial", icon: <HomeFilled /> },
-  { label: "Progress", key: "progress", icon: <HomeFilled /> },
-  { label: "Profile", key: "profile", icon: <HomeFilled /> },
+  { label: "Activity", key: "", icon: <FileTextOutlined /> },
+  {
+    label: "Video Tutorial",
+    key: "videoTutorial",
+    icon: <VideoCameraOutlined />,
+  },
+  {
+    label: "Progress",
+    key: "progress",
+    icon: <LineChartOutlined />,
+  },
+  {
+    label: "Profile",
+    key: "profile",
+    icon: <UserOutlined />,
+  },
 ];
 
 function Sidebar() {
@@ -21,9 +39,12 @@ function Sidebar() {
         <p>Exercise</p>
       </div>
       <div className="sidebar-menu">
-        <Menu onClick={onMenuClick} mode="vertical" items={items} />
+        <Menu mode="vertical" items={items} onClick={onMenuClick} />
       </div>
-      <div className="sidebar-signOut"></div>
+      <Button type="text" className="sidebar-signOut" block>
+        <LogoutOutlined style={{ marginInlineEnd: "16px " }} />
+        Sign out
+      </Button>
     </div>
   );
 }

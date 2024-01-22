@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ActivityCard from "./Pages/Activity.jsx/ActivityCard";
+import ActivityList from "./Pages/Activity.jsx/ActivityList";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ActivityCard />} />
+          <Route path="/" element={<ActivityList />} />
         </Routes>
       </BrowserRouter>
     </div>
