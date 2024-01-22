@@ -51,7 +51,7 @@ function ActivityCard() {
           return (
             <div className="activityCard-card" key={item.key}>
               <div className="activityCard-card-imageContainer">
-                <img className="activityCard-card-image" src={boxingPicture} />
+                <img className="activityCard-card-image" src={weightTraining} />
               </div>
               <div className="activityCard-card-content">
                 <div className="activityCard-card-topContent">
