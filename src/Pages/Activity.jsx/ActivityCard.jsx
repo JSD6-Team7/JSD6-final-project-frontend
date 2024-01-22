@@ -51,7 +51,10 @@ function ActivityCard() {
           return (
             <div className="activityCard-card" key={item.key}>
               <div className="activityCard-card-imageContainer">
-                <img className="activityCard-card-image" src={runningPicture} />
+                <img
+                  className="activityCard-card-image"
+                  src={swimmingPicture}
+                />
               </div>
               <div className="activityCard-card-content">
                 <div className="activityCard-card-topContent">
@@ -60,9 +63,7 @@ function ActivityCard() {
                   </div>
                   <div className="activityCard-card-topContent-right">
                     <div className="activityCard-card-topContent-right-timeCounting">
-                      <FieldTimeOutlined
-                        style={{ width: "16px", height: "16px" }}
-                      />
+                      <FieldTimeOutlined style={{ width: "16px" }} />
                       60:00
                     </div>
                     <Button className="editButton">
@@ -74,7 +75,37 @@ function ActivityCard() {
                   {item.activityType}
                 </div>
                 <div className="activityCard-card-lastContent">
-                  <UserOutlined />
+                  <div className="activityCard-card-lastContent-text">
+                    <div
+                      style={{
+                        border: "2px solid #45ae3a",
+                        borderRadius: "50%",
+                      }}
+                    >
+                      <UserOutlined
+                        style={{
+                          color: "#45ae3a",
+                          width: "22px",
+                          height: "22px",
+                        }}
+                      />
+                    </div>
+                    {item.description}
+                  </div>
+                  <div className="activityCard-card-lastContent-buttons">
+                    <Button
+                      className="card-startButton card-buttons"
+                      type="primary"
+                    >
+                      START
+                    </Button>
+                    <Button
+                      className="card-finishButton card-buttons"
+                      type="primary"
+                    >
+                      Finish
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
