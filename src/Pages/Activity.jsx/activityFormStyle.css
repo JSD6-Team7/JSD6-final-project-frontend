@@ -34,3 +34,6 @@
   color: red !important;
   background: rgb(245, 213, 213);
 }
+.ant-modal-content {
+  padding: 45px 24px 45px 24px !important;
+}
