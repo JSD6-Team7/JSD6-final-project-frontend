@@ -1,0 +1,35 @@
+[33mcommit d657c378f86249cee91fba19c3d9f033b68581e6[m[33m ([m[1;36mHEAD -> [m[1;32mprogress[m[33m)[m
+Author: fruityty <danuphat.lim@gmail.com>
+Date:   Tue Jan 23 22:07:12 2024 +0700
+
+    progress 1 commit
+
+[33mcommit 5f654aeb655c5beea7e89b81259420f85ac7ef65[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: fon <anatsaya.lee@gmail.com>
+Date:   Mon Jan 22 20:45:10 2024 +0700
+
+    Finish: Activity Card Template
+
+[33mcommit b45a4acaec3c609da85bf80aaa11e892be960589[m
+Author: fon <anatsaya.lee@gmail.com>
+Date:   Mon Jan 22 02:34:40 2024 +0700
+
+    Doing:Activity Card
+
+[33mcommit 9bca4f0272fb7424700afa181f3452d0ecf708c4[m
+Author: fon <anatsaya.lee@gmail.com>
+Date:   Sun Jan 21 20:39:05 2024 +0700
+
+    Finish: Sidebar template with CSS
+
+[33mcommit 195e847ce5cde784c8c1a4a4a3f3b7c34159b34e[m
+Author: fon <anatsaya.lee@gmail.com>
+Date:   Sun Jan 21 01:11:41 2024 +0700
+
+    finish sidebar template
+
+[33mcommit eba2c3eb9917080190c803428a0706bfaa10e177[m[33m ([m[1;31morigin/Rosa[m[33m, [m[1;32mmaster[m[33m)[m
+Author: dujthep taichan <anatsaya.lbs@gmail.com>
+Date:   Thu Jan 18 20:20:17 2024 +0700
+
+    set up project
