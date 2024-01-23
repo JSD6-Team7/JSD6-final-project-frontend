@@ -8,6 +8,7 @@ import {
   FieldTimeOutlined,
   EditOutlined,
   UserOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 const activityItems = [
   {
@@ -65,6 +66,9 @@ function ActivityCard() {
                     </div>
                     <Button className="editButton">
                       <EditOutlined />
+                    </Button>
+                    <Button className="deleteButton">
+                      <DeleteOutlined />
                     </Button>
                   </div>
                 </div>

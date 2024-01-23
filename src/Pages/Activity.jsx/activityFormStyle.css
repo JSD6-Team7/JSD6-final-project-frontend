@@ -1,0 +1,36 @@
+.duration-label {
+  margin-bottom: 0;
+}
+.duration {
+  display: inline-block;
+  width: calc(50% - 12px);
+}
+.hourDuration {
+  margin: 0 12px;
+}
+.date {
+  width: 100%;
+}
+.button {
+  display: flex;
+  gap: 12px;
+}
+.addButton {
+  width: 50%;
+  background: #45ae3a;
+  border: 1px solid white;
+}
+.addButton:hover {
+  background: #75b370 !important;
+}
+.addButton:active {
+  background: #359626 !important;
+}
+.cancelButton {
+  width: 50%;
+}
+.cancelButton:hover {
+  border-color: red !important;
+  color: red !important;
+  background: rgb(245, 213, 213);
+}

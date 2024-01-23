@@ -1,12 +1,14 @@
 import "./activityCardStyle.css";
-import ActivityCard from "./ActivityCard";
-
+import "./activityFormStyle.css";
 import Layout from "../Layout";
+import ActivityCard from "./ActivityCard";
+import ActivityForm from "./ActivityForm";
 
 function ActivityList() {
   return (
     <Layout>
-      <ActivityCard />
+      {/* <ActivityCard /> */}
+      <ActivityForm />
     </Layout>
   );
 }
