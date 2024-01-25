@@ -1,15 +1,29 @@
-import { Button } from "antd";
 import runningImage from "../../assets/activityTypePictures/running.png";
 import swimmingImage from "../../assets/activityTypePictures/swimming.png";
 import yogaImage from "../../assets/activityTypePictures/yoga.png";
 import boxingImage from "../../assets/activityTypePictures/boxing.png";
 import bodyWeightImage from "../../assets/activityTypePictures/weightTraining.png";
+import { Button, Modal } from "antd";
 import {
   FieldTimeOutlined,
   EditOutlined,
   UserOutlined,
   DeleteOutlined,
+  ExclamationCircleFilled,
 } from "@ant-design/icons";
+
+const date = () => {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toDateString();
+  return <p className="activityCard-date">{formattedDate}</p>;
+};
+const activityImage = {
+  running: runningImage,
+  swimming: swimmingImage,
+  yoga: yogaImage,
+  boxing: boxingImage,
+  "body weight": bodyWeightImage,
+};
 
 function ActivityCard({
   activityItems,
@@ -17,17 +31,18 @@ function ActivityCard({
   deleteItem,
   setEditedItem,
 }) {
-  const date = () => {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toDateString();
-    return <p className="activityCard-date">{formattedDate}</p>;
-  };
-  const imageSource = (item) => {
-    if (item.activityType === "running") return runningImage;
-    if (item.activityType === "swimming") return swimmingImage;
-    if (item.activityType === "yoga") return yogaImage;
-    if (item.activityType === "boxing") return boxingImage;
-    if (item.activityType === "body weight") return bodyWeightImage;
+  const showDeleteConfirm = (id) => {
+    Modal.confirm({
+      title: "Are you sure to delete this activity?",
+      icon: <ExclamationCircleFilled />,
+      centered: true,
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        deleteItem(id);
+      },
+    });
   };
 
   return (
@@ -51,7 +66,7 @@ function ActivityCard({
               <div className="activityCard-card-imageContainer">
                 <img
                   className="activityCard-card-image"
-                  src={imageSource(item)}
+                  src={activityImage[item.activityType]}
                 />
               </div>
               <div className="activityCard-card-content">
@@ -72,7 +87,8 @@ function ActivityCard({
                     </Button>
                     <Button
                       className="deleteButton"
-                      onClick={() => deleteItem(item.id)}
+                      onClick={() => showDeleteConfirm(item.id)}
+                      // onClick={() => deleteItem(item.id)}
                     >
                       <DeleteOutlined />
                     </Button>

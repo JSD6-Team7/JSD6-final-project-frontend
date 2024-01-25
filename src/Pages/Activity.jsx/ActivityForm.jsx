@@ -99,6 +99,7 @@ function ActivityForm({ isFormOpen, createItem, updateItem, editedItem }) {
               <Select
                 align="left"
                 placeholder="Select Your Activity Type"
+                value={activityType}
                 allowClear
               >
                 {activityType.map((each) => {
