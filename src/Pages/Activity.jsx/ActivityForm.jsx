@@ -28,8 +28,23 @@ const formItemLayout = {
     },
   },
 };
-function ActivityForm() {
-  const [isOpen, setIsOpen] = useState(false);
+const activityType = [
+  { key: 1, type: "running" },
+  { key: 2, type: "swimming" },
+  { key: 3, type: "yoga" },
+  { key: 4, type: "boxing" },
+  { key: 5, type: "body weight" },
+];
+
+function ActivityForm({ isFormOpen, createItem, updateItem, editedItem }) {
+  const [form, setForm] = useState({
+    activityName: "",
+    description: "",
+    activityType: "",
+    date: "",
+    hourDuration: "",
+    minuteDuration: "",
+  });
 
   const handleSubmit = (value) => {
     const { username, email, password, confirmPassword, phoneNumber } = value;
@@ -38,12 +53,19 @@ function ActivityForm() {
     } else {
       //redirect to ActivityPage
     }
+    createItem();
   };
 
   return (
     <div>
       <Button onClick={() => setIsOpen(true)}>Add Activity</Button>
-      <Modal open={isOpen} closeIcon={null} footer={null} centered width={600}>
+      <Modal
+        open={isFormOpen}
+        closeIcon={null}
+        footer={null}
+        centered
+        width={600}
+      >
         <Flex justify="center" align="center" vertical>
           <Typography.Title level={4}>Activity Form</Typography.Title>
           <Form
@@ -79,14 +101,15 @@ function ActivityForm() {
                 placeholder="Select Your Activity Type"
                 allowClear
               >
-                <Select.Option value="running">running</Select.Option>
-                <Select.Option value="swimming">swimming</Select.Option>
-                <Select.Option value="yoga">yoga</Select.Option>
-                <Select.Option value="badminton">weight training</Select.Option>
-                <Select.Option value="bodyWeight">boxing</Select.Option>
+                {activityType.map((each) => {
+                  return (
+                    <Select.Option key={each.key} value={each.type}>
+                      {each.type}
+                    </Select.Option>
+                  );
+                })}
               </Select>
             </Form.Item>
-
             <Form.Item
               className="duration-label"
               labelAlign="left"

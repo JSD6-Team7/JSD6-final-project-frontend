@@ -1,40 +1,33 @@
 import { Button } from "antd";
-import runningPicture from "../../assets/activityTypePictures/running.png";
-import swimmingPicture from "../../assets/activityTypePictures/swimming.png";
-import yogaPicture from "../../assets/activityTypePictures/yoga.png";
-import boxingPicture from "../../assets/activityTypePictures/boxing.png";
-import weightTraining from "../../assets/activityTypePictures/weightTraining.png";
+import runningImage from "../../assets/activityTypePictures/running.png";
+import swimmingImage from "../../assets/activityTypePictures/swimming.png";
+import yogaImage from "../../assets/activityTypePictures/yoga.png";
+import boxingImage from "../../assets/activityTypePictures/boxing.png";
+import bodyWeightImage from "../../assets/activityTypePictures/weightTraining.png";
 import {
   FieldTimeOutlined,
   EditOutlined,
   UserOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-const activityItems = [
-  {
-    activityName: "swim",
-    description: "Have fun",
-    activityType: "swimming",
-    hourDuration: 1,
-    minuteDuration: 30,
-    key: 1,
-  },
-  {
-    activityName: "Run",
-    description: "To do a push-up",
-    activityType: "running",
-    hourDuration: 1,
-    minuteDuration: 10,
-    key: 2,
-  },
-];
 
-function ActivityCard() {
+function ActivityCard({
+  activityItems,
+  setIsFormOpen,
+  deleteItem,
+  setEditedItem,
+}) {
   const date = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toDateString();
-
     return <p className="activityCard-date">{formattedDate}</p>;
+  };
+  const imageSource = (item) => {
+    if (item.activityType === "running") return runningImage;
+    if (item.activityType === "swimming") return swimmingImage;
+    if (item.activityType === "yoga") return yogaImage;
+    if (item.activityType === "boxing") return boxingImage;
+    if (item.activityType === "body weight") return bodyWeightImage;
   };
 
   return (
@@ -42,7 +35,11 @@ function ActivityCard() {
       <h2>Welcome</h2>
       <div className="activityCard-line2">
         {date()}
-        <Button ghost className="activityCard-addActivityButton">
+        <Button
+          ghost
+          className="activityCard-addActivityButton"
+          onClick={() => setIsFormOpen(true)}
+        >
           + Activity
         </Button>
       </div>
@@ -50,9 +47,12 @@ function ActivityCard() {
       <div className="activityCard-cards">
         {activityItems.map((item) => {
           return (
-            <div className="activityCard-card" key={item.key}>
+            <div className="activityCard-card" key={item.id}>
               <div className="activityCard-card-imageContainer">
-                <img className="activityCard-card-image" src={weightTraining} />
+                <img
+                  className="activityCard-card-image"
+                  src={imageSource(item)}
+                />
               </div>
               <div className="activityCard-card-content">
                 <div className="activityCard-card-topContent">
@@ -64,10 +64,16 @@ function ActivityCard() {
                       <FieldTimeOutlined style={{ width: "16px" }} />
                       60:00
                     </div>
-                    <Button className="editButton">
+                    <Button
+                      className="editButton"
+                      onClick={() => setEditedItem(item)}
+                    >
                       <EditOutlined />
                     </Button>
-                    <Button className="deleteButton">
+                    <Button
+                      className="deleteButton"
+                      onClick={() => deleteItem(item.id)}
+                    >
                       <DeleteOutlined />
                     </Button>
                   </div>
