@@ -4,7 +4,7 @@ import Layout from "../Layout";
 import ActivityCard from "./ActivityCard";
 import ActivityForm from "./ActivityForm";
 import { v4 as uuid } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const items = [
   {
@@ -16,21 +16,19 @@ const items = [
     minuteDuration: 30,
     id: uuid(),
   },
-  {
-    activityName: "weight trainning",
-    description: "Exciting",
-    activityType: "body weight",
-    date: "",
-    hourDuration: 0,
-    minuteDuration: 20,
-    id: uuid(),
-  },
 ];
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState(items);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [editedItem, setEditedItem] = useState();
+  const [formDisplay, setFormDisplay] = useState();
+
+  useEffect(() => {
+    console.log(formDisplay);
+    if (formDisplay) {
+      setIsFormOpen(true);
+    }
+  }, [formDisplay]);
 
   const createItem = (item) => {
     setActivityItems((prev) => {
@@ -45,12 +43,14 @@ function ActivityList() {
     });
   };
   const updateItem = (item) => {
+    console.log(item);
     setActivityItems((prev) => {
       return prev.map((each) => {
         if (each.id === item.id) {
           return item;
+        } else {
+          return each;
         }
-        return each;
       });
     });
   };
@@ -59,15 +59,16 @@ function ActivityList() {
     <Layout>
       <ActivityCard
         activityItems={activityItems}
-        setIsFormOpen={setIsFormOpen}
         deleteItem={deleteItem}
-        setEditedItem={setEditedItem}
+        setFormDisplay={setFormDisplay}
       />
       <ActivityForm
         isFormOpen={isFormOpen}
+        setIsFormOpen={setIsFormOpen}
         createItem={createItem}
         updateItem={updateItem}
-        editedItem={editedItem}
+        formDisplay={formDisplay}
+        setFormDisplay={setFormDisplay}
       />
     </Layout>
   );
