@@ -3,12 +3,13 @@ import {
   Flex,
   Form,
   Input,
+  InputNumber,
   DatePicker,
   Select,
   Typography,
   Modal,
 } from "antd";
-import { useState } from "react";
+const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -36,77 +37,80 @@ const activityType = [
   { key: 5, type: "body weight" },
 ];
 
-function ActivityForm({ isFormOpen, createItem, updateItem, editedItem }) {
-  const [form, setForm] = useState({
-    activityName: "",
-    description: "",
-    activityType: "",
-    date: "",
-    hourDuration: "",
-    minuteDuration: "",
-  });
-
-  const handleSubmit = (value) => {
-    const { username, email, password, confirmPassword, phoneNumber } = value;
-    if (!username || !email || !password || !confirmPassword || !phoneNumber) {
-      return;
-    } else {
-      //redirect to ActivityPage
-    }
-    createItem();
+function ActivityForm({
+  isFormOpen,
+  setIsFormOpen,
+  createItem,
+  updateItem,
+  formDisplay,
+  setFormDisplay,
+}) {
+  const handleCancleButton = () => {
+    setIsFormOpen(false);
   };
+  const handleSubmitForm = (value) => {
+    console.log(formDisplay);
+    if (formDisplay?.id) {
+      updateItem({ ...value, id: formDisplay.id });
+      setFormDisplay(null);
+    } else {
+      createItem(value);
+    }
+    setIsFormOpen(false);
+  };
+  const submitButtonText = formDisplay?.id ? "Edit Activity" : "Add Activity";
 
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Add Activity</Button>
       <Modal
         open={isFormOpen}
         closeIcon={null}
         footer={null}
         centered
         width={600}
+        destroyOnClose={true}
       >
         <Flex justify="center" align="center" vertical>
           <Typography.Title level={4}>Activity Form</Typography.Title>
           <Form
             {...formItemLayout}
-            name="activityForm"
-            onFinish={handleSubmit}
             scrollToFirstError
+            onFinish={handleSubmitForm}
+            autoComplete="off"
+            initialValues={formDisplay}
           >
             <Form.Item
               labelAlign="left"
-              name="activityName"
               label="Activity Name"
+              name="activityName"
             >
-              <Input placeholder="Enter your Activity Name" />
+              <Input placeholder="Enter your Activity Name" id="activityName" />
             </Form.Item>
 
-            <Form.Item labelAlign="left" name="description" label="Description">
-              <Input placeholder="Enter your Description" />
+            <Form.Item labelAlign="left" label="Description" name="description">
+              <Input placeholder="Enter your Description" id="description" />
             </Form.Item>
-
             <Form.Item
+              name="activityType"
               labelAlign="left"
               label="Activity Type"
               rules={[
                 {
                   required: true,
-                  message: "Please select activity type",
                 },
               ]}
             >
               <Select
                 align="left"
                 placeholder="Select Your Activity Type"
-                value={activityType}
+                id="activityType"
                 allowClear
               >
                 {activityType.map((each) => {
                   return (
-                    <Select.Option key={each.key} value={each.type}>
+                    <Option key={each.key} value={each.type}>
                       {each.type}
-                    </Select.Option>
+                    </Option>
                   );
                 })}
               </Select>
@@ -118,17 +122,27 @@ function ActivityForm({ isFormOpen, createItem, updateItem, editedItem }) {
             >
               <Form.Item
                 className="duration"
-                name="hour"
-                rules={[{ required: true }]}
+                name="hourDuration"
+                label="Hour"
+                rules={[{ required: true, type: "number", min: 1, max: 24 }]}
               >
-                <Input placeholder="Hour" />
+                <InputNumber
+                  className="duration-Input"
+                  placeholder="Hour"
+                  id="hourDuration"
+                />
               </Form.Item>
               <Form.Item
-                className="hourDuration duration"
-                name="Minute"
-                rules={[{ required: true }]}
+                className="duration"
+                name="minuteDuration"
+                label="Minute"
+                rules={[{ required: true, type: "number", min: 1, max: 59 }]}
               >
-                <Input placeholder="Minute" />
+                <InputNumber
+                  className="duration-Input"
+                  placeholder="Minute"
+                  id="minuteDuration"
+                />
               </Form.Item>
             </Form.Item>
 
@@ -138,12 +152,14 @@ function ActivityForm({ isFormOpen, createItem, updateItem, editedItem }) {
               label="Date"
               rules={[{ required: true }]}
             >
-              <DatePicker className="date" />
+              <DatePicker className="date" id="date" />
             </Form.Item>
             <div className="button">
-              <Button className="cancelButton">Cancel</Button>
+              <Button className="cancelButton" onClick={handleCancleButton}>
+                Cancel
+              </Button>
               <Button className="addButton" type="primary" htmlType="submit">
-                Add Activity
+                {submitButtonText}
               </Button>
             </div>
           </Form>
