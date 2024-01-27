@@ -1,13 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ActivityList from "./Pages/Activity.jsx/ActivityList";
+import Login from "./Pages/Login-signup/Login";
+import Register from "./Pages/Login-signup/Register";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ActivityList />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
