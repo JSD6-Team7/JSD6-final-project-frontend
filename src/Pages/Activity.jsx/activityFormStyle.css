@@ -8,6 +8,13 @@
 .hourDuration {
   margin: 0 12px;
 }
+.duration-Input {
+  width: inherit;
+}
+.ant-form-item-control-input-content {
+  display: flex;
+  justify-content: space-between;
+}
 .date {
   width: 100%;
 }
@@ -35,5 +42,5 @@
   background: rgb(245, 213, 213);
 }
 .ant-modal-content {
-  padding: 45px 24px 45px 24px !important;
+  padding: 45px 50px 45px 50px !important;
 }
