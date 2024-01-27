@@ -24,13 +24,16 @@ const activityImage = {
   boxing: boxingImage,
   "body weight": bodyWeightImage,
 };
+const emptyFields = {
+  activityName: "",
+  description: "",
+  activityType: "",
+  date: "",
+  hourDuration: "",
+  minuteDuration: "",
+};
 
-function ActivityCard({
-  activityItems,
-  setIsFormOpen,
-  deleteItem,
-  setEditedItem,
-}) {
+function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
   const showDeleteConfirm = (id) => {
     Modal.confirm({
       title: "Are you sure to delete this activity?",
@@ -53,7 +56,7 @@ function ActivityCard({
         <Button
           ghost
           className="activityCard-addActivityButton"
-          onClick={() => setIsFormOpen(true)}
+          onClick={() => setFormDisplay({ ...emptyFields })}
         >
           + Activity
         </Button>
@@ -81,14 +84,13 @@ function ActivityCard({
                     </div>
                     <Button
                       className="editButton"
-                      onClick={() => setEditedItem(item)}
+                      onClick={() => setFormDisplay({ ...item })}
                     >
                       <EditOutlined />
                     </Button>
                     <Button
                       className="deleteButton"
                       onClick={() => showDeleteConfirm(item.id)}
-                      // onClick={() => deleteItem(item.id)}
                     >
                       <DeleteOutlined />
                     </Button>
