@@ -12,8 +12,8 @@ const items = [
     description: "Have fun",
     activityType: "swimming",
     date: "",
-    hourDuration: 1,
-    minuteDuration: 30,
+    hourGoal: 1,
+    minuteGoal: 30,
     id: uuid(),
   },
 ];
