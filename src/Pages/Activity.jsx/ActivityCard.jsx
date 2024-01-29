@@ -11,12 +11,14 @@ import {
   DeleteOutlined,
   ExclamationCircleFilled,
 } from "@ant-design/icons";
+import { useRef, useState, useEffect } from "react";
 
 const date = () => {
   const currentDate = new Date();
   const formattedDate = currentDate.toDateString();
   return <p className="activityCard-date">{formattedDate}</p>;
 };
+
 const activityImage = {
   running: runningImage,
   swimming: swimmingImage,
@@ -29,11 +31,36 @@ const emptyFields = {
   description: "",
   activityType: "",
   date: "",
-  hourDuration: "",
-  minuteDuration: "",
+  hourGoal: "",
+  minuteGoal: "",
 };
 
 function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
+
+  const timer = useRef();
+  useEffect(() => {
+    if (isRunning) {
+      timer.current = setInterval(() => setTime((time) => time + 1), 1000);
+    }
+    return () => clearInterval(timer.current);
+  }, [isRunning]);
+
+  const getHours = (time) => Math.floor((time / 60 / 60) % 24);
+  const getMinutes = (time) => Math.floor((time / 60) % 60);
+  const getSeconds = (time) => Math.floor(time % 60);
+
+  const formatTime = (time) => {
+    const hours = getHours(time) < 10 ? "0" + getHours(time) : getHours(time);
+    const minutes =
+      getMinutes(time) < 10 ? "0" + getMinutes(time) : getMinutes(time);
+    const seconds =
+      getSeconds(time) < 10 ? "0" + getSeconds(time) : getSeconds(time);
+    return hours + ":" + minutes + ":" + seconds;
+  };
+
   const showDeleteConfirm = (id) => {
     Modal.confirm({
       title: "Are you sure to delete this activity?",
@@ -46,6 +73,11 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
         deleteItem(id);
       },
     });
+  };
+
+  const handleFinish = () => {
+    setIsRunning(false);
+    setIsFinish(true);
   };
 
   return (
@@ -80,7 +112,7 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
                   <div className="activityCard-card-topContent-right">
                     <div className="activityCard-card-topContent-right-timeCounting">
                       <FieldTimeOutlined style={{ width: "16px" }} />
-                      60:00
+                      {formatTime(time)}
                     </div>
                     <Button
                       className="editButton"
@@ -118,18 +150,48 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
                     {item.description}
                   </div>
                   <div className="activityCard-card-lastContent-buttons">
-                    <Button
-                      className="card-startButton card-buttons"
-                      type="primary"
-                    >
-                      START
-                    </Button>
-                    <Button
-                      className="card-finishButton card-buttons"
-                      type="primary"
-                    >
-                      Finish
-                    </Button>
+                    {!isRunning && !isFinish && time === 0 && (
+                      <Button
+                        className="card-startButton card-buttons"
+                        type="primary"
+                        onClick={() => setIsRunning(true)}
+                      >
+                        START
+                      </Button>
+                    )}
+                    {!isRunning && !isFinish && time > 0 && (
+                      <Button
+                        className="card-startButton card-buttons"
+                        type="primary"
+                        onClick={() => setIsRunning(true)}
+                      >
+                        RESUME
+                      </Button>
+                    )}
+                    {isRunning && !isFinish && (
+                      <Button
+                        className="card-finishButton card-buttons"
+                        type="primary"
+                        onClick={() => setIsRunning(false)}
+                      >
+                        Stop
+                      </Button>
+                    )}
+                    {!isRunning && !isFinish && time > 0 && (
+                      <Button
+                        className="card-finishButton card-buttons"
+                        type="primary"
+                        onClick={handleFinish}
+                      >
+                        Finish
+                      </Button>
+                    )}
+                    {isFinish && (
+                      <h4>
+                        Total time : {getHours(time)} Hours {getMinutes(time)}{" "}
+                        Minutes {getSeconds(time)} Seconds
+                      </h4>
+                    )}
                   </div>
                 </div>
               </div>
