@@ -1,0 +1,46 @@
+.duration-label {
+  margin-bottom: 0;
+}
+.duration {
+  display: inline-block;
+  width: calc(50% - 12px);
+}
+.hourDuration {
+  margin: 0 12px;
+}
+.duration-Input {
+  width: inherit;
+}
+.ant-form-item-control-input-content {
+  display: flex;
+  justify-content: space-between;
+}
+.date {
+  width: 100%;
+}
+.button {
+  display: flex;
+  gap: 12px;
+}
+.addButton {
+  width: 50%;
+  background: #45ae3a;
+  border: 1px solid white;
+}
+.addButton:hover {
+  background: #75b370 !important;
+}
+.addButton:active {
+  background: #359626 !important;
+}
+.cancelButton {
+  width: 50%;
+}
+.cancelButton:hover {
+  border-color: red !important;
+  color: red !important;
+  background: rgb(245, 213, 213);
+}
+.ant-modal-content {
+  padding: 45px 50px 45px 50px !important;
+}

@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 48px;
+  border: 1px solid #d9d9d9;
 }
 .content {
   width: 1072px;
@@ -27,7 +28,7 @@
 }
 .sidebar-menu {
   flex: 1;
-  padding: 0px 32px;
+  padding-left: 32px;
   font-size: 24px;
 }
 .sidebar-signOut {

@@ -60,7 +60,7 @@
 .activityCard-card-topContent-right {
   margin-left: auto;
   display: flex;
-  gap: 16px;
+  gap: 8px;
 }
 .activityCard-card-topContent-right-timeCounting {
   color: #000000;
@@ -85,12 +85,26 @@
   justify-content: center;
   align-items: center;
   color: #45ae3a;
+  padding: 4px 0px 4px px !important;
 }
 .editButton:hover,
 .editButton:active {
   background: transparent;
   border: 1px solid white !important;
   color: #45ae3a !important;
+}
+.deleteButton {
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f35656;
+}
+.deleteButton:hover,
+.deleteButton:active {
+  background: transparent;
+  border: 1px solid white !important;
+  color: #f35656 !important;
 }
 .activityCard-card-middleContent {
   width: 564px;
