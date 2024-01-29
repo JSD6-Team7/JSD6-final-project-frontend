@@ -121,6 +121,8 @@ const Register = () => {
     value: website,
   }));
   return (
+    <div class="container">
+    <div className="container-form">
     <Form
       {...formItemLayout}
       form={form}
@@ -259,9 +261,12 @@ const Register = () => {
           Register
         </Button>
       </Form.Item>
-      <img src={Section}/> 
     </Form>
-    
+    </div>
+    <div class="container-item">
+    <img src={Section}/> 
+    </div>
+    </div>
   );
  };
 
