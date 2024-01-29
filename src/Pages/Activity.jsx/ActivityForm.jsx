@@ -122,26 +122,26 @@ function ActivityForm({
             >
               <Form.Item
                 className="duration"
-                name="hourDuration"
+                name="hourGoal"
                 label="Hour"
                 rules={[{ required: true, type: "number", min: 1, max: 24 }]}
               >
                 <InputNumber
                   className="duration-Input"
                   placeholder="Hour"
-                  id="hourDuration"
+                  id="hourGoal"
                 />
               </Form.Item>
               <Form.Item
                 className="duration"
-                name="minuteDuration"
+                name="minuteGoal"
                 label="Minute"
                 rules={[{ required: true, type: "number", min: 1, max: 59 }]}
               >
                 <InputNumber
                   className="duration-Input"
                   placeholder="Minute"
-                  id="minuteDuration"
+                  id="minuteGoal"
                 />
               </Form.Item>
             </Form.Item>
