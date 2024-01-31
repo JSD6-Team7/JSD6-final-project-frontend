@@ -14,6 +14,7 @@ const items = [
     date: "",
     hourGoal: 1,
     minuteGoal: 30,
+    actualTime: "",
     id: uuid(),
   },
 ];
@@ -34,6 +35,7 @@ function ActivityList() {
     setActivityItems((prev) => {
       return [...prev, { ...item, id: uuid() }];
     });
+    console.log(activityItems);
   };
   const deleteItem = (id) => {
     setActivityItems((prev) => {
@@ -47,7 +49,10 @@ function ActivityList() {
     setActivityItems((prev) => {
       return prev.map((each) => {
         if (each.id === item.id) {
-          return item;
+          if (each.actualTime) return { ...item, actualTime: each.actualTime };
+          else {
+            return item;
+          }
         } else {
           return each;
         }
@@ -61,6 +66,7 @@ function ActivityList() {
         activityItems={activityItems}
         deleteItem={deleteItem}
         setFormDisplay={setFormDisplay}
+        updateItem={updateItem}
       />
       <ActivityForm
         isFormOpen={isFormOpen}
