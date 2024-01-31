@@ -35,10 +35,21 @@ const emptyFields = {
   minuteGoal: "",
 };
 
-function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
+function ActivityCard({
+  activityItems,
+  deleteItem,
+  setFormDisplay,
+  updateItem,
+}) {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
+
+  useEffect(() => {
+    if (activityItems[activityItems.length - 1].actualTime) {
+      setIsFinish(false);
+    }
+  }, [activityItems[activityItems.length - 1].actualTime]);
 
   const timer = useRef();
   useEffect(() => {
@@ -75,9 +86,15 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
     });
   };
 
-  const handleFinish = () => {
+  const handleFinish = (item) => {
+    const updatedFields = {
+      ...item,
+      actualTime: time,
+    };
     setIsRunning(false);
     setIsFinish(true);
+    updateItem(updatedFields);
+    setTime(0);
   };
 
   return (
@@ -107,12 +124,14 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
               <div className="activityCard-card-content">
                 <div className="activityCard-card-topContent">
                   <div className="activityCard-card-topContent-left">
-                    Goal:{item.hourDuration} Hour {item.minuteDuration} Min
+                    Goal:{item.hourGoal} Hour {item.minuteGoal} Min
                   </div>
                   <div className="activityCard-card-topContent-right">
                     <div className="activityCard-card-topContent-right-timeCounting">
                       <FieldTimeOutlined style={{ width: "16px" }} />
-                      {formatTime(time)}
+                      {item.actualTime > 0
+                        ? formatTime(item.actualTime)
+                        : formatTime(time)}
                     </div>
                     <Button
                       className="editButton"
@@ -150,25 +169,31 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
                     {item.description}
                   </div>
                   <div className="activityCard-card-lastContent-buttons">
-                    {!isRunning && !isFinish && time === 0 && (
-                      <Button
-                        className="card-startButton card-buttons"
-                        type="primary"
-                        onClick={() => setIsRunning(true)}
-                      >
-                        START
-                      </Button>
-                    )}
-                    {!isRunning && !isFinish && time > 0 && (
-                      <Button
-                        className="card-startButton card-buttons"
-                        type="primary"
-                        onClick={() => setIsRunning(true)}
-                      >
-                        RESUME
-                      </Button>
-                    )}
-                    {isRunning && !isFinish && (
+                    {!isRunning &&
+                      !isFinish &&
+                      time === 0 &&
+                      !item.actualTime && (
+                        <Button
+                          className="card-startButton card-buttons"
+                          type="primary"
+                          onClick={() => setIsRunning(true)}
+                        >
+                          START
+                        </Button>
+                      )}
+                    {!isRunning &&
+                      !isFinish &&
+                      time > 0 &&
+                      !item.actualTime && (
+                        <Button
+                          className="card-startButton card-buttons"
+                          type="primary"
+                          onClick={() => setIsRunning(true)}
+                        >
+                          RESUME
+                        </Button>
+                      )}
+                    {isRunning && !isFinish && !item.actualTime && (
                       <Button
                         className="card-finishButton card-buttons"
                         type="primary"
@@ -177,21 +202,26 @@ function ActivityCard({ activityItems, deleteItem, setFormDisplay }) {
                         Stop
                       </Button>
                     )}
-                    {!isRunning && !isFinish && time > 0 && (
-                      <Button
-                        className="card-finishButton card-buttons"
-                        type="primary"
-                        onClick={handleFinish}
-                      >
-                        Finish
-                      </Button>
-                    )}
-                    {isFinish && (
-                      <h4>
-                        Total time : {getHours(time)} Hours {getMinutes(time)}{" "}
-                        Minutes {getSeconds(time)} Seconds
-                      </h4>
-                    )}
+                    {!isRunning &&
+                      !isFinish &&
+                      time > 0 &&
+                      !item.actualTime && (
+                        <Button
+                          className="card-finishButton card-buttons"
+                          type="primary"
+                          onClick={() => handleFinish(item)}
+                        >
+                          Finish
+                        </Button>
+                      )}
+                    {isFinish ||
+                      (item.actualTime && (
+                        <h4>
+                          Total time : {getHours(item.actualTime)} Hours{" "}
+                          {getMinutes(item.actualTime)} Minutes{" "}
+                          {getSeconds(item.actualTime)} Seconds
+                        </h4>
+                      ))}
                   </div>
                 </div>
               </div>
