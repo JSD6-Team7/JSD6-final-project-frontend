@@ -6,7 +6,11 @@ import ProgressActivityCard from "./ProgressActivityCard";
 function ProgressPage() {
   return (
     <Layout>
-      <div>
+      <div className="progress">
+        <div className='head'>
+          Progress
+          <p>Dec, 5 2023</p>
+        </div>
         <ProgressChart />
         <ProgressActivityCard />
       </div>

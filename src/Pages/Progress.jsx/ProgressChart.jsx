@@ -1,16 +1,15 @@
-import ProgressChartPie from './ProgressChartPie';
-import ProgressChartBar from './ProgressChartBar';
+import "./ProgressChart.css";
+import ProgressBarChartJs from './ProgressBarChartJs';
+import ProgressDonutChartJs from './ProgressDonutChartJs';
 
 function ProgressChart() {
     return (
-        <div>
-            test ProgressChart
-            <ProgressChartBar />
-            <ProgressChartPie />
+        <div className='chart'>
+            <ProgressBarChartJs />
+            <ProgressDonutChartJs />
         </div>
     );
 }
-
 
 
 export default ProgressChart;

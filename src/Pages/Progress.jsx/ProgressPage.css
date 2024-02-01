@@ -1,0 +1,21 @@
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.progress {
+    height: 1024px;
+    width: 1072px;
+}
+
+.head {
+    text-align: center;
+    padding-top: 96px;
+    margin-bottom: 64px;
+}
+
+.card {
+    text-align: center;
+}
