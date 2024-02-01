@@ -66,8 +66,8 @@
   color: #000000;
   background: transparent;
   border: 2px solid #0000001a;
-  width: 113px;
-  height: 32px;
+  width: 150px;
+  height: 36px;
   font-size: 21px;
   border-radius: 20px;
   display: flex;
@@ -85,7 +85,9 @@
   justify-content: center;
   align-items: center;
   color: #45ae3a;
-  padding: 4px 0px 4px px !important;
+}
+.ant-btn {
+  padding: 4px 4px;
 }
 .editButton:hover,
 .editButton:active {
