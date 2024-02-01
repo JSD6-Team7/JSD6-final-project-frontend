@@ -60,14 +60,14 @@
 .activityCard-card-topContent-right {
   margin-left: auto;
   display: flex;
-  gap: 16px;
+  gap: 8px;
 }
 .activityCard-card-topContent-right-timeCounting {
   color: #000000;
   background: transparent;
   border: 2px solid #0000001a;
-  width: 113px;
-  height: 32px;
+  width: 150px;
+  height: 36px;
   font-size: 21px;
   border-radius: 20px;
   display: flex;
@@ -86,11 +86,27 @@
   align-items: center;
   color: #45ae3a;
 }
+.ant-btn {
+  padding: 4px 4px;
+}
 .editButton:hover,
 .editButton:active {
   background: transparent;
   border: 1px solid white !important;
   color: #45ae3a !important;
+}
+.deleteButton {
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f35656;
+}
+.deleteButton:hover,
+.deleteButton:active {
+  background: transparent;
+  border: 1px solid white !important;
+  color: #f35656 !important;
 }
 .activityCard-card-middleContent {
   width: 564px;
