@@ -1,6 +1,27 @@
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .chart {
-    /* background-color: beige; */
+  
     display: flex;
+    width: 816px;
+    height: 376px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
     
+}
+
+.chart__container__donut {
+   height:224px; 
+   width:224px;
+}
+
+.chart__container__bar {
+   width:560px;
 }
 

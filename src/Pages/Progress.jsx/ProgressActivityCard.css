@@ -5,21 +5,19 @@
     box-sizing: border-box;
 }
 
-.activityCard-card {
+.progress__card {
     width: 816px;
     height: 88px;
-    /* background-color: red; */
-    /* display: flex;
-    flex-direction: row; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px 24px;
+    border: 2px solid #0000001a;
+    border-radius: 16px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    display: flex;
+   
 }
 
-.activityCard-card-imageContainer {
+.progress__card__number {
     width: 56px;
     height: 56px;
     background-color: #45AE3A;
@@ -28,4 +26,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.progress__card__type {
+    width: 350px;
+    height:56px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.progress__card__time {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+
+}
+
+.progress__card__goal {
+    width: 140px;
 }

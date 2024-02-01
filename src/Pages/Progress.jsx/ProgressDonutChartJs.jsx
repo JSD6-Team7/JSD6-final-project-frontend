@@ -6,11 +6,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ProgressDonutChartJs = () => {
   const data = {
-    labels: ['Type1', 'Type2', 'Type3', 'Type4', 'Type5', 'Type6', 'Type7'],
+    labels: ['Type1', 'Type2', 'Type3', 'Type4', 'Type5', 'Type6'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3, 7],
+        data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -18,7 +18,7 @@ const ProgressDonutChartJs = () => {
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
           'rgba(255, 159, 64, 0.2)',
-          'rgba(78, 20, 64, 1)',
+          
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -27,7 +27,7 @@ const ProgressDonutChartJs = () => {
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
-          'rgba(78, 20, 64, 1)',
+          
         ],
         borderWidth: 1,
       },
@@ -35,7 +35,7 @@ const ProgressDonutChartJs = () => {
   };
 
   return (
-    <div className="chart-container" style={{height:"376px", width:"560px"}}>
+    <div className="chart__container__donut" >
       <Doughnut data={data} />
     </div>
   );

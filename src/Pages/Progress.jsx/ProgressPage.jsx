@@ -8,7 +8,7 @@ function ProgressPage() {
     <Layout>
       <div className="progress">
         <div className='head'>
-          Progress
+          <h2>Progress</h2>
           <p>Dec, 5 2023</p>
         </div>
         <ProgressChart />

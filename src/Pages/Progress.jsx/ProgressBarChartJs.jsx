@@ -24,7 +24,7 @@ const ProgressBarChartJs = () => {
     ],
   };
   return (
-    <div className="chart-container" style={{height:"376px", width:"560px"}}>
+    <div className="chart__container__bar" >
       <Bar data={data} />
     </div>
   );
