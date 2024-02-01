@@ -181,6 +181,15 @@ function ActivityCard({
                           START
                         </Button>
                       )}
+                    {isRunning && !isFinish && !item.actualTime && (
+                      <Button
+                        className="card-finishButton card-buttons"
+                        type="primary"
+                        onClick={() => setIsRunning(false)}
+                      >
+                        Stop
+                      </Button>
+                    )}
                     {!isRunning &&
                       !isFinish &&
                       time > 0 &&
@@ -193,15 +202,7 @@ function ActivityCard({
                           RESUME
                         </Button>
                       )}
-                    {isRunning && !isFinish && !item.actualTime && (
-                      <Button
-                        className="card-finishButton card-buttons"
-                        type="primary"
-                        onClick={() => setIsRunning(false)}
-                      >
-                        Stop
-                      </Button>
-                    )}
+
                     {!isRunning &&
                       !isFinish &&
                       time > 0 &&
