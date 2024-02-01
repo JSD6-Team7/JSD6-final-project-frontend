@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 // import { PlusOutlined } from '@ant-design/icons'
-import "./TutorialCSS.css";
-
 const Accordion = ( { items, keepOthersOpen } ) => {
 
   const [accordionItems, setAccordionItems ] = useState(null)
@@ -36,17 +34,27 @@ const Accordion = ( { items, keepOthersOpen } ) => {
     ])
   }
 
-  return(
+  return( 
     <div className='accordion-parent'>
+      <h2 className="headunderline">Video Tutorial</h2>
       {accordionItems?.map((listItem, key) => {
         return (
+          
           <div class={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
             <button className='toggle' onClick={() => handleAccordionToggle(listItem)}>
-              <p>{listItem.label}</p>
+              <p>{listItem.index + 1} {listItem.label}</p>
               <div className='direcction-indicator'>{listItem.toggled ? '-' : '+'}</div>
             </button>
             <div className='content-parent'>
-              <div className='content'>{listItem.renderContent()}</div>
+              <div className='content'>
+                <iframe src={listItem.video} width="784" height="441" frameborder="0" allowfullscreen="true"></iframe>
+                <div className="sub-content-head">
+                  <label>Descriptions:</label>
+                  <div className="sub-content-des">
+                      <p>{listItem.descriptions}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )

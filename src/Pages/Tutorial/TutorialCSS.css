@@ -1,13 +1,21 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .accordion-parent {
     border-radius: 3px;
-    background-color: #f5deb3;
-    box-shadow: 0 1px 2px #00000033;
+    padding: 96px 128px 42px 128px;
+    /* box-shadow: 0 1px 2px #00000033; */
+}
+
+.headunderline {
+    width: 816px;
+    height: 104px;
+    font-weight: bold;
+    padding: 32px 0px;
+    border-bottom: 2px solid #0000001a;
 }
 
 .accordion {
@@ -15,8 +23,6 @@
     flex-direction: column;
     width: 100%;
     background: #FFF;
-    margin: 0 15px;
-    padding: 15px;
     /* border-radius: 16px;
     border: 2px solid #0000001a; */
 }
@@ -25,8 +31,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 10px 15px;
+    padding: 32px;
     fill: black;
     color: black;
     transition: color 0.15s ease, fill 0.15s ease;
@@ -55,67 +62,38 @@
 
 .accordion .content-parent {
     max-height: 0;
+    width: 816px;
     overflow: hidden;
     transition: max-height 0.15s ease-out;
-    color: black;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 2px solid #0000001a;
 }
 
 .accordion.toggled .content-parent {
-    max-height: 500px;
-    transition: max-height 0.25s ease-in;
-    transition: all 0.2s linear;
-
+    max-height: 1000px; /*need to change after define the min-character*/
+    transition: max-height 0.25s ease-in; /* New height on hover */
 }
 
 .accordion .content {
     padding: 10px 15px;
 }
 
-/*
-.body{
-    min-height: 100vh;
+.content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #E3F2FD;
+    flex-direction: column;
 }
 
-.accordion{
-    max-width: 530px;
-    width: 100%;
-    background: #FFF;
-    margin: 0 15px;
-    padding: 15px;
-    border-radius: 16px;
-    border: 2px solid #0000001a;
-}
-.accordion .accordion-content{
-    margin: 10px 0;
-    border-radius: 4px;
-    background: #FFF7F0;
-    border: 1px solid #FFD6B3;
-    overflow: hidden;
-}
-.accordion-content header{
+.sub-content-head {
     display: flex;
-    min-height: 50px;
-    padding: 0 15px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: space-between;
-}
-.accordion-content header .title{
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
-}
+    flex-direction: column;
+    margin: 15px 0;
+} 
 
-.accordion-content .description{
-    height: 0;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 15px;
-    transition: all 0.2s linear;
-}
- */
+.sub-content-des {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgb(242,242,242);
+    background-color: rgb(242,242,242);
+    max-width: 784px; 
+    min-height: fit-content;
+} 
