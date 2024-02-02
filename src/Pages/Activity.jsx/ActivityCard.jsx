@@ -46,10 +46,10 @@ function ActivityCard({
   const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
-    if (activityItems[activityItems.length - 1].actualTime) {
+    if (activityItems[activityItems.length - 1]?.actualTime) {
       setIsFinish(false);
     }
-  }, [activityItems[activityItems.length - 1].actualTime]);
+  }, [activityItems[activityItems.length - 1]?.actualTime]);
 
   const timer = useRef();
   useEffect(() => {
@@ -72,7 +72,7 @@ function ActivityCard({
     return hours + ":" + minutes + ":" + seconds;
   };
 
-  const showDeleteConfirm = (id) => {
+  const showDeleteConfirm = (_id) => {
     Modal.confirm({
       title: "Are you sure to delete this activity?",
       icon: <ExclamationCircleFilled />,
@@ -81,7 +81,7 @@ function ActivityCard({
       okType: "danger",
       cancelText: "No",
       onOk() {
-        deleteItem(id);
+        deleteItem(_id);
       },
     });
   };
@@ -114,7 +114,7 @@ function ActivityCard({
       <div className="activityCard-cards">
         {activityItems.map((item) => {
           return (
-            <div className="activityCard-card" key={item.id}>
+            <div className="activityCard-card" key={item._id}>
               <div className="activityCard-card-imageContainer">
                 <img
                   className="activityCard-card-image"
@@ -141,7 +141,7 @@ function ActivityCard({
                     </Button>
                     <Button
                       className="deleteButton"
-                      onClick={() => showDeleteConfirm(item.id)}
+                      onClick={() => showDeleteConfirm(item._id)}
                     >
                       <DeleteOutlined />
                     </Button>
