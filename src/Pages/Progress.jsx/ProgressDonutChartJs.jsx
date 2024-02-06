@@ -4,20 +4,34 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ProgressDonutChartJs = () => {
+const ProgressDonutChartJs = ({activitysListbyTypes}) => {
+  const durationByTypes = [];
+  const labelByTypes = [];
+  for (let i = 0; i < activitysListbyTypes.length; i++) {
+    durationByTypes.push(activitysListbyTypes[i].total_duration);
+    labelByTypes.push(activitysListbyTypes[i]._id);
+  };
+
+  // don't forget to delete console.log
+  console.log(durationByTypes);
+  console.log(labelByTypes);
+  console.log(activitysListbyTypes);
+
   const data = {
-    labels: ['Type1', 'Type2', 'Type3', 'Type4', 'Type5', 'Type6'],
+    labels: labelByTypes,
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        // data: [durationByTypes["body weight"], 19, 3, 5, 2],
+        data: durationByTypes,
+    
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+         
           
         ],
         borderColor: [
@@ -26,7 +40,7 @@ const ProgressDonutChartJs = () => {
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
+         
           
         ],
         borderWidth: 1,

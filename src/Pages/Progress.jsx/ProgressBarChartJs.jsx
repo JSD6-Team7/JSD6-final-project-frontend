@@ -2,7 +2,11 @@ import React from "react";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
-const ProgressBarChartJs = () => {
+const ProgressBarChartJs = ( {activitysList}) => {
+  activitysList
+
+  var  day0, day1, day2, day3, day4, day5, day6;
+  
   const labels = [
     "Sunday",
     "Monday",
