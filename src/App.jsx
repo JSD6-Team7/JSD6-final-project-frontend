@@ -2,9 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ActivityList from "./Pages/Activity.jsx/ActivityList";
 import ProgressPage from "./Pages/Progress.jsx/ProgressPage";
-
-import Login from "./Pages/Activity.jsx/Login-signup/Login";
-import Register from "./Pages/Activity.jsx/Login-signup/Register";
+import Login from "./Pages/Login-signup/Login";
+import Register from "./Pages/Login-signup/Register";
 
 function App() {
   return (
