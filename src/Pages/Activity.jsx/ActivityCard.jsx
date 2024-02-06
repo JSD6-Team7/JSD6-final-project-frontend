@@ -135,7 +135,9 @@ function ActivityCard({
                     </div>
                     <Button
                       className="editButton"
-                      onClick={() => setFormDisplay({ ...item })}
+                      onClick={() => {
+                        setFormDisplay({ ...item });
+                      }}
                     >
                       <EditOutlined />
                     </Button>

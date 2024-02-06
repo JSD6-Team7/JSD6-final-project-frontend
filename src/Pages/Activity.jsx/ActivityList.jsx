@@ -6,6 +6,7 @@ import ActivityForm from "./ActivityForm";
 import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 
 // const items = [
 //   {
@@ -23,7 +24,7 @@ import axios from "axios";
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formDisplay, setFormDisplay] = useState();
+  const [formDisplay, setFormDisplay] = useState(null);
 
   useEffect(() => {
     getActivityInfo();
@@ -40,8 +41,12 @@ function ActivityList() {
     axios
       .get("http://localhost:3000/activityInfo")
       .then((response) => {
-        console.log(response);
-        setActivityItems(response.data);
+        console.log(response.data);
+        setActivityItems((prev) => {
+          return response.data.map((each) => {
+            return { ...each, date: dayjs(each.date) };
+          });
+        });
       })
       .catch((error) => {
         console.error("Error: ", error);
@@ -77,6 +82,7 @@ function ActivityList() {
   };
 
   const updateItem = (item) => {
+    console.log(item);
     axios
       .put("http://localhost:3000/activityInfo", item)
       .then((response) => {
