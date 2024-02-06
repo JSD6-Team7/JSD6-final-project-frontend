@@ -3,32 +3,29 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import Section from "./Section.jpg";
 import "./index.css";
+import FormItem from "antd/es/form/FormItem";
+import {useNavigate} from 'react-router-dom';
+
 const onFinish = (values) => {
   console.log("Success:", values);
 };
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-const Login = () => (
+const Login = () => {
+  //const navigate = useNavigate();
+  //const submitHandler = () => {
+    //navigate('/');
+  //};
+  return (
   <div class="container">
     <div className="container-form">
       <Form
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        style={{
-          maxWidth: 600,
-        }}
-        initialValues={{
-          remember: true,
-        }}
+        scrollToFirstError
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        initialValues={FormData}
       >
         <div
           style={{
@@ -55,7 +52,7 @@ const Login = () => (
             display: "inline-flex",
           }}
         >
-          <Link to="/" style={{ flex: "1 1 0", margin: "32px" }}>
+          <Link to="/login" style={{ flex: "1 1 0", margin: "32px" }}>
             <div
               style={{
                 flex: "1 1 0",
@@ -114,6 +111,7 @@ const Login = () => (
 
         <div class="container-item-1">
           <Form.Item
+            labelAlign="left"
             label="Username"
             name="username"
             rules={[
@@ -127,6 +125,7 @@ const Login = () => (
           </Form.Item>
 
           <Form.Item
+            labelAlign="left"
             label="Password"
             name="password"
             rules={[
@@ -140,6 +139,7 @@ const Login = () => (
           </Form.Item>
 
           <Form.Item
+            labelAlign="left"
             name="remember"
             valuePropName="checked"
             wrapperCol={{
@@ -168,5 +168,6 @@ const Login = () => (
     </div>
   </div>
 );
-
+          }
 export default Login;
+   
