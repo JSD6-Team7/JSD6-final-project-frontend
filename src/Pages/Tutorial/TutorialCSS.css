@@ -52,12 +52,23 @@
     border-bottom: 0;
 }
 
+.labelcard {
+    display: flex;
+}
+
+.number-highlighted {
+    background: transparent;
+    border: 1px solid white !important;
+    color: #45ae3a;
+}
+
 .accordion .toggle .direction-indicator {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15px;
-    font-weight: 600;
+    background: transparent;
+    border: 1px solid white !important;
+    color: #45ae3a !important;
 }
 
 .accordion .content-parent {

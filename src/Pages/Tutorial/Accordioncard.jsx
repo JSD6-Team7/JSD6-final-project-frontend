@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { PlusOutlined } from '@ant-design/icons'
+import { PlusCircleFilled, MinusCircleFilled } from '@ant-design/icons'
 const Accordion = ( { items, keepOthersOpen } ) => {
 
   const [accordionItems, setAccordionItems ] = useState(null)
@@ -42,8 +42,11 @@ const Accordion = ( { items, keepOthersOpen } ) => {
           
           <div class={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
             <button className='toggle' onClick={() => handleAccordionToggle(listItem)}>
-              <p>{listItem.index + 1} {listItem.label}</p>
-              <div className='direcction-indicator'>{listItem.toggled ? '-' : '+'}</div>
+              <div className='labelcard'>
+                <p cclassName='number-highlighted'>{listItem.index + 1}. </p>
+                <p>{listItem.label}</p>
+              </div>
+              <div className='direction-indicator'>{listItem.toggled ? <MinusCircleFilled /> : <PlusCircleFilled />}</div>
             </button>
             <div className='content-parent'>
               <div className='content'>
