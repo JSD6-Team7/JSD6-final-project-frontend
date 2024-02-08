@@ -12,10 +12,32 @@
 
 .headunderline {
     width: 816px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin: 32px 0px;
+    border-bottom: 2px solid #0000001a;
+}
+
+.headunderline div {
+    padding-bottom: 48px;
+}
+.headunderline-item {
+    width: 816px;
     height: 104px;
     font-weight: bold;
     padding: 32px 0px;
-    border-bottom: 2px solid #0000001a;
+}
+
+.headunderline-button {
+    color: #000000 !important;
+    background: transparent !important;
+    border: 2px solid #0000001a !important;
+    box-shadow: none !important;
+    width: 110px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 6px;
 }
 
 .accordion {
@@ -56,10 +78,22 @@
     display: flex;
 }
 
+.labelheadline {
+    padding-left: 1rem;
+}
+
 .number-highlighted {
-    background: transparent;
-    border: 1px solid white !important;
-    color: #45ae3a;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #45AE3A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number-highlighted p {
+    color: #FFF;
 }
 
 .accordion .toggle .direction-indicator {
