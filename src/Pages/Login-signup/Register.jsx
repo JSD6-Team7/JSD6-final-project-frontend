@@ -18,40 +18,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -96,20 +62,8 @@ const Register = () => {
           width: 70,
         }}
       >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
+        <Option value="86">+66</Option>
+        <Option value="87">+86</Option>
       </Select>
     </Form.Item>
   );
@@ -129,112 +83,48 @@ const Register = () => {
   }));
 
   return (
-    <div className="container">
+    <div class="container">
       <div className="container-form">
         <Form
           {...formItemLayout}
           form={form}
           name="register"
-          onFinish={onFinish}
-          initialValues={{
-            residence: ["zhejiang", "hangzhou", "xihu"],
-            prefix: "86",
-          }}
+          onFinish= {onFinish}
+          autoComplete="off"
+          initialValues={FormData}
           style={{
             maxWidth: 600,
           }}
           scrollToFirstError
         >
-          <div
-            style={{
-              width: "100%",
-              textAlign: "center",
-              color: "black",
-              fontSize: 12,
-              fontFamily: "Inter",
-              fontWeight: "30",
-              lineHeight: 3,
-              wordWrap: "break-word",
-            }}
-          >
+          <div style={{ width: '100%', textAlign: 'center', color: 'black', fontSize: 12, fontFamily: 'Inter', fontWeight: '30', lineHeight: 3, wordWrap: 'break-word' }}>
             <h1>Welcome!</h1>
             <p>Please Enter your detail.</p>
           </div>
 
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-              gap: 16,
-              display: "inline-flex",
-            }}
-          >
-            <Link to="/" style={{ flex: "1 1 0", margin: "32px" }}>
-              <div
-                style={{
-                  flex: "1 1 0",
-                  height: 29,
-                  paddingTop: 4,
-                  paddingBottom: 4,
-                  borderBottom: "2px #45AE3A solid",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 8,
-                  display: "flex",
-                }}
-              >
-                <div
-                  style={{
-                    color: "#45AE3A",
-                    fontSize: 14,
-                    fontFamily: "Inter",
-                    fontWeight: "400",
-                    lineHeight: 21,
-                    wordWrap: "break-word",
-                  }}
-                >
-                  Login
-                </div>
+          <div style={{ width: '100%', height: '100%', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 16, display: 'inline-flex' }}>
+            <Link to="/login" style={{ flex: '1 1 0', margin: "32px" }} >
+              <div style={{
+                flex: '1 1 0', height: 29, paddingTop: 4, paddingBottom: 4,
+               justifyContent: 'center', alignItems: 'center', gap: 8, display: 'flex'
+              }}>
+                <div style={{ color: '#050505', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', lineHeight: 21, wordWrap: 'break-word' }}>Login</div>
               </div>
-            </Link>
-            <Link to="/Register" style={{ flex: "1 1 0", margin: "32px" }}>
-              <div
-                style={{
-                  flex: "1 1 0",
-                  height: 29,
-                  paddingTop: 4,
-                  paddingBottom: 4,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 8,
-                  display: "flex",
-                }}
-              >
-                <div
-                  style={{
-                    color: "#050505",
-                    fontSize: 14,
-                    fontFamily: "Inter",
-                    fontWeight: "400",
-                    lineHeight: 21,
-                    wordWrap: "break-word",
-                  }}
-                >
-                  Sign Up
-                </div>
+            </Link><Link to="/Register" style={{ flex: '1 1 0', margin: "32px" }} >
+              <div style={{ flex: '1 1 0', height: 29, paddingTop: 4, paddingBottom: 4, justifyContent: 'center', alignItems: 'center', gap: 8, display: 'flex',borderBottom: '2px #45AE3A solid' }}>
+                <div style={{ color: '#45AE3A', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', lineHeight: 21, wordWrap: 'break-word' }}>Sign Up</div>
               </div>
             </Link>
           </div>
           <Form.Item
-            name="username"
+            labelAlign="left"
+            name="Username"
             label="Username"
             tooltip="What do you want others to call you?"
             rules={[
               {
                 required: true,
-                message: "Please input your Username!",
+                message: 'Please input your Username!',
                 whitespace: true,
               },
             ]}
@@ -243,34 +133,36 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
-            name="phoneNumber"
+            labelAlign="left"
+            name="phone"
             label="Phone Number"
             rules={[
               {
                 required: true,
-                message: "Please input your phone number!",
+                message: 'Please input your phone number!',
               },
             ]}
           >
             <Input
               addonBefore={prefixSelector}
               style={{
-                width: "100%",
+                width: '100%',
               }}
             />
           </Form.Item>
 
           <Form.Item
+            labelAlign="left"
             name="email"
             label="E-mail"
             rules={[
               {
-                type: "email",
-                message: "The input is not valid E-mail!",
+                type: 'email',
+                message: 'The input is not valid E-mail!',
               },
               {
                 required: true,
-                message: "Please input your E-mail!",
+                message: 'Please input your E-mail!',
               },
             ]}
           >
@@ -278,12 +170,13 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
+            labelAlign="left"
             name="password"
             label="Password"
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: 'Please input your password!',
               },
             ]}
             hasFeedback
@@ -292,23 +185,22 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item
+            labelAlign="left"
             name="confirm"
             label="Confirm Password"
-            dependencies={["password"]}
+            dependencies={['password']}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: "Please confirm your password!",
+                message: 'Please confirm your password!',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
+                  if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(
-                    new Error("The new password that you entered do not match!")
-                  );
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
                 },
               }),
             ]}
@@ -316,15 +208,15 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
+
           <Form.Item
+            labelAlign="left"
             name="agreement"
             valuePropName="checked"
             rules={[
               {
                 validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
+                  value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
               },
             ]}
             {...tailFormItemLayout}
@@ -340,7 +232,7 @@ const Register = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className="container-item">
+      <div class="container-item">
         <img src={Section} />
       </div>
     </div>

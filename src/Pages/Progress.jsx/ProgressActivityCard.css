@@ -1,0 +1,55 @@
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.progress__card {
+    width: 816px;
+    height: 88px;
+    padding: 16px 24px;
+    border: 2px solid #0000001a;
+    border-radius: 16px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    display: flex;
+   
+}
+
+.progress__card__number {
+    width: 56px;
+    height: 56px;
+    background-color: #45AE3A;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress__card__type {
+    width: 350px;
+    height:56px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.progress__card__time {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+
+}
+
+.progress__card__goal {
+    width: 140px;
+}

@@ -1,0 +1,28 @@
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.progress {
+    /* height: 1024px; */
+    height: auto;
+    /* width: 1072px; */
+    width: 816px;
+    margin-left: 128px;
+}
+
+.head {
+    text-align: center;
+    padding-top: 96px;
+    margin-bottom: 64px;
+}
+
+h2 {
+    margin-bottom: 32px;
+}
+
+.card {
+    text-align: center;
+}
