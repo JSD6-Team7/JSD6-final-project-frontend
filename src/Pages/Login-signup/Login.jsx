@@ -10,7 +10,7 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 const Login = () => (
-  <div class="container">
+  <div className="container">
     <div className="container-form">
       <Form
         name="basic"
@@ -112,7 +112,7 @@ const Login = () => (
           </Link>
         </div>
 
-        <div class="container-item-1">
+        <div className="container-item-1">
           <Form.Item
             label="Username"
             name="username"
@@ -163,7 +163,7 @@ const Login = () => (
         </div>
       </Form>
     </div>
-    <div class="container-item">
+    <div className="container-item">
       <img src={Section} />
     </div>
   </div>
