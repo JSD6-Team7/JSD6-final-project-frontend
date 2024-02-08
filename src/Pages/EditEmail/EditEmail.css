@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner {
+    display: flex;
+    width: 1500px;
+
+    /* justify-content: space-between; */
+}
+
+.name {
+    margin-top: 120px;
+    margin-left: 35px;
+    padding-right: 20px;
+
+}
+
+.second-text {
+    /* margin-top: 50px; */
+    margin-left: 50px;
+}
+
+.group-button {
+    margin-top: 170px;
+    margin-left: 50px;
+}
+
+.btn-show {
+    margin-right: 20px;
+    margin-top: 180px;
+}
+
+/* .card {
+    padding: 46px 68px 35px 98px;
+} */
+
+.wrapper-card {
+    display: flex;
+}
+
+.menu {
+    padding-left: 10px;
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+}
+.icon-menu {
+    padding-right: 10px;
+}
+
+.btn-image {
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.button-save{
+    padding-left: 100px;
+    padding-top:100px;
+}
+
+h2 {
+    text-align: center;
+}
