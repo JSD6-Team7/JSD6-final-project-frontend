@@ -3,23 +3,9 @@ import "./activityFormStyle.css";
 import Layout from "../Layout";
 import ActivityCard from "./ActivityCard";
 import ActivityForm from "./ActivityForm";
-import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
-
-// const items = [
-//   {
-//     activityName: "swim",
-//     description: "Have fun",
-//     activityType: "swimming",
-//     date: "",
-//     hourGoal: 1,
-//     minuteGoal: 30,
-//     actualTime: "",
-//     id: uuid(),
-//   },
-// ];
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
