@@ -13,16 +13,12 @@
     "@ant-design/charts": "^2.0.3",
     "@ant-design/colors": "^7.0.2",
     "@ant-design/icons": "^5.2.6",
-<<<<<<< HEAD
-    "antd": "^5.13.1",
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
-=======
     "@ant-design/pro-components": "^2.6.48",
     "antd": "^5.13.2",
     "chart.js": "^4.4.1",
     "chartjs": "^0.3.24",
->>>>>>> 7eb7e2683b290d2d3d7f6a26084f018e12092335
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
