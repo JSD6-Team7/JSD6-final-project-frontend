@@ -50,10 +50,12 @@ const tailFormItemLayout = {
 };
 const Register = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
   const onFinish = async (values) => {
   await axios.post("http://localhost:8000/signup",  values).then((response) => {
     if (response.status === 200) {
       console.log(`Response from API : ${response.data}`);
+      navigate("/login")
     } 
   })
   .catch((error) => {

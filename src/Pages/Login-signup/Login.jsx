@@ -18,7 +18,7 @@ const Login = () => {
     //navigate('/');
   //};
   return (
-  <div class="container">
+  <div className="container">
     <div className="container-form">
       <Form
         scrollToFirstError
