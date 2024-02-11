@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import Section from './Section.jpg'
 import "./index.css";
+import axios from "axios";
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -47,9 +48,17 @@ const tailFormItemLayout = {
 };
 const Register = () => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values) => {
+  await axios.post("http://localhost:8000/signup",  values).then((response) => {
+    if (response.status === 200) {
+      console.log(`Response from API : ${response.data}`);
+    } 
+  })
+  .catch((error) => {
+    console.error("Failed to delete", error);
+  });
   };
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -57,8 +66,7 @@ const Register = () => {
           width: 70,
         }}
       >
-        <Option value="86">+66</Option>
-        <Option value="87">+86</Option>
+        <Option value="66">+66</Option>
       </Select>
     </Form.Item>
   );
@@ -110,7 +118,7 @@ const Register = () => {
           </div>
           <Form.Item
             labelAlign="left"
-            name="Username"
+            name="username"
             label="Username"
             tooltip="What do you want others to call you?"
             rules={[
@@ -126,7 +134,7 @@ const Register = () => {
 
           <Form.Item
             labelAlign="left"
-            name="phone"
+            name="phoneNumber"
             label="Phone Number"
             rules={[
               {
@@ -137,6 +145,7 @@ const Register = () => {
           >
             <Input
               addonBefore={prefixSelector}
+              maxLength={10}
               style={{
                 width: '100%',
               }}
@@ -200,23 +209,6 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
-
-          <Form.Item
-            labelAlign="left"
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
-              },
-            ]}
-            {...tailFormItemLayout}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
-          </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Register
