@@ -109,7 +109,7 @@ const Login = () => {
           </Link>
         </div>
 
-        <div class="container-item-1">
+        <div className="container-item-1">
           <Form.Item
             labelAlign="left"
             label="Username"
@@ -163,7 +163,7 @@ const Login = () => {
         </div>
       </Form>
     </div>
-    <div class="container-item">
+    <div className="container-item">
       <img src={Section} />
     </div>
   </div>

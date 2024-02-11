@@ -9,6 +9,7 @@ import {
   Typography,
   Modal,
 } from "antd";
+
 const { Option } = Select;
 
 const formItemLayout = {
@@ -49,16 +50,17 @@ function ActivityForm({
     setIsFormOpen(false);
   };
   const handleSubmitForm = (value) => {
+    console.log(value);
     console.log(formDisplay);
-    if (formDisplay?.id) {
-      updateItem({ ...value, id: formDisplay.id });
+    if (formDisplay?._id) {
+      updateItem({ ...value, _id: formDisplay._id });
       setFormDisplay(null);
     } else {
       createItem(value);
     }
     setIsFormOpen(false);
   };
-  const submitButtonText = formDisplay?.id ? "Edit Activity" : "Add Activity";
+  const submitButtonText = formDisplay?._id ? "Edit Activity" : "Add Activity";
 
   return (
     <div>

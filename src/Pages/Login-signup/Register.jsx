@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   AutoComplete,
   Button,
@@ -10,11 +10,13 @@ import {
   InputNumber,
   Row,
   Select,
-} from 'antd';
-import { Link } from 'react-router-dom';
-import Section from './Section.jpg'
+} from "antd";
+import { Link } from "react-router-dom";
+import Section from "./Section.jpg";
 import "./index.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -59,6 +61,7 @@ const Register = () => {
   });
   };
 
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -75,13 +78,16 @@ const Register = () => {
     if (!value) {
       setAutoCompleteResult([]);
     } else {
-      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
+      setAutoCompleteResult(
+        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
+      );
     }
   };
   const websiteOptions = autoCompleteResult.map((website) => ({
     label: website,
     value: website,
   }));
+
   return (
     <div class="container">
       <div className="container-form">
