@@ -51,21 +51,18 @@ const tailFormItemLayout = {
 const Register = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-
   const onFinish = (values) => {
-    console.log(values);
-    const member = {
-      username: values.username,
-      password: values.password,
-      email: values.email,
-      phoneNumber: values.phoneNumber,
-    };
-    axios.post("http://localhost:3000/signup", member).then((response) => {
-      if (response.status === 200) {
-        console.log(response.data);
-        navigate("/login");
-      }
-    });
+    axios
+      .post("http://localhost:8000/signup", values)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(`Response from API : ${response.data}`);
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.error("Error occures", error);
+      });
   };
 
   const prefixSelector = (
@@ -75,8 +72,7 @@ const Register = () => {
           width: 70,
         }}
       >
-        <Option value="86">+66</Option>
-        <Option value="87">+86</Option>
+        <Option value="66">+66</Option>
       </Select>
     </Form.Item>
   );
@@ -221,6 +217,7 @@ const Register = () => {
           >
             <Input
               addonBefore={prefixSelector}
+              maxLength={10}
               style={{
                 width: "100%",
               }}
@@ -286,24 +283,6 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item
-            labelAlign="left"
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
-              },
-            ]}
-            {...tailFormItemLayout}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
-          </Form.Item>
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Register

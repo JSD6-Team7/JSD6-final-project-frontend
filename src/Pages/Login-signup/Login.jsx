@@ -1,13 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form, Input, Modal } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Section from "./Section.jpg";
 import "./index.css";
+import axios from "axios";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 const Login = () => {
+  const alertWarning = (message) => {
+    Modal.error({
+      title: message,
+    });
+  };
+  const navigate = useNavigate();
+  const onFinish = (values) => {
+    console.log("Success:", values);
+    axios
+      .post("http://localhost:8000/login", values)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          if (response.data.message) {
+            const message = response.data.message;
+            alertWarning(message);
+          } else {
+            let userInfo = JSON.stringify(response.data);
+            localStorage.setItem("user", userInfo);
+            navigate("/");
+          }
+        } else {
+          const message = response.data.message;
+          alertWarning(message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error occures", error);
+      });
+  };
+
   return (
     <div className="container">
       <div className="container-form">
