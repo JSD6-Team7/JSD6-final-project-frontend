@@ -12,6 +12,11 @@ function ActivityList() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formDisplay, setFormDisplay] = useState(null);
 
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const user_id = userObject.user_id;
+  const currentDate = new Date().toISOString();
+
   useEffect(() => {
     getActivityInfo();
   }, []);
@@ -25,9 +30,9 @@ function ActivityList() {
 
   const getActivityInfo = () => {
     axios
-      .get("http://localhost:3000/activityInfo")
+      .get(`http://localhost:3000/activityInfo/${user_id}?date=${currentDate}`)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         setActivityItems((prev) => {
           return response.data.map((each) => {
             return { ...each, date: dayjs(each.date) };
@@ -40,8 +45,10 @@ function ActivityList() {
   };
 
   const createItem = (item) => {
+    const newActivity = { ...item, user_id };
+    console.log(newActivity);
     axios
-      .post("http://localhost:3000/activityInfo", item)
+      .post("http://localhost:3000/activityInfo", newActivity)
       .then((response) => {
         if (response.status === 201) {
           getActivityInfo();
