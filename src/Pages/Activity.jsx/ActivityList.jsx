@@ -15,7 +15,7 @@ function ActivityList() {
   const userString = localStorage.getItem("user");
   const userObject = JSON.parse(userString);
   const user_id = userObject.user_id;
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date().toLocaleDateString();
 
   useEffect(() => {
     getActivityInfo();
@@ -45,8 +45,9 @@ function ActivityList() {
   };
 
   const createItem = (item) => {
+    console.log(item);
     const newActivity = { ...item, user_id };
-    console.log(newActivity);
+    console.log(newActivity.date);
     axios
       .post("http://localhost:3000/activityInfo", newActivity)
       .then((response) => {
