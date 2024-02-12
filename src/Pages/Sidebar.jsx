@@ -32,6 +32,12 @@ function Sidebar() {
   const onMenuClick = (item) => {
     navigate(`/${item.key}`);
   };
+
+  const onSignoutClick = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-appLogo">
@@ -41,7 +47,12 @@ function Sidebar() {
       <div className="sidebar-menu">
         <Menu mode="vertical" items={items} onClick={onMenuClick} />
       </div>
-      <Button type="text" className="sidebar-signOut" block>
+      <Button
+        type="text"
+        className="sidebar-signOut"
+        onClick={onSignoutClick}
+        block
+      >
         <LogoutOutlined style={{ marginInlineEnd: "16px " }} />
         Sign out
       </Button>
