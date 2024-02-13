@@ -18,7 +18,7 @@ function ActivityList() {
   const userString = localStorage.getItem("user");
   const userObject = JSON.parse(userString);
   const user_id = userObject.user_id;
-  const currentDate = new Date().toLocaleDateString();
+  const token = userObject.token;
 
   useEffect(() => {
     getActivityInfo();
@@ -33,7 +33,9 @@ function ActivityList() {
 
   const getActivityInfo = () => {
     axios
-      .get(`http://localhost:3000/activityInfo/${user_id}?date=${currentDate}`)
+      .get(`http://localhost:3000/activityInfo/${user_id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         console.log(response.data);
         setActivityItems((prev) => {
@@ -52,7 +54,9 @@ function ActivityList() {
     const newActivity = { ...item, user_id };
     console.log(newActivity.date);
     axios
-      .post("http://localhost:3000/activityInfo", newActivity)
+      .post("http://localhost:3000/activityInfo", newActivity, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
         if (response.status === 201) {
           getActivityInfo();
@@ -65,7 +69,9 @@ function ActivityList() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:3000/activityInfo/${id}`)
+      .delete(`http://localhost:3000/activityInfo/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
         if (response.status === 200) {
           getActivityInfo();
@@ -81,7 +87,9 @@ function ActivityList() {
   const updateItem = (item) => {
     console.log(item);
     axios
-      .put("http://localhost:3000/activityInfo", item)
+      .put("http://localhost:3000/activityInfo", item, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
         if (response.status === 200) {
           getActivityInfo();
