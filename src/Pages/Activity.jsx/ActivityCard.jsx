@@ -13,12 +13,6 @@ import {
 } from "@ant-design/icons";
 import { useRef, useState, useEffect } from "react";
 
-const date = () => {
-  const currentDate = new Date();
-  const formattedDate = currentDate.toDateString();
-  return <p className="activityCard-date">{formattedDate}</p>;
-};
-
 const activityImage = {
   running: runningImage,
   swimming: swimmingImage,
@@ -26,17 +20,9 @@ const activityImage = {
   boxing: boxingImage,
   "body weight": bodyWeightImage,
 };
-const emptyFields = {
-  activityName: "",
-  description: "",
-  activityType: "",
-  date: "",
-  hourGoal: "",
-  minuteGoal: "",
-};
 
 function ActivityCard({
-  activityItems,
+  eachCardItem,
   deleteItem,
   setFormDisplay,
   updateItem,
@@ -46,10 +32,10 @@ function ActivityCard({
   const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
-    if (activityItems[activityItems.length - 1]?.actualTime) {
+    if (eachCardItem.actualTime) {
       setIsFinish(false);
     }
-  }, [activityItems[activityItems.length - 1]?.actualTime]);
+  }, [eachCardItem.actualTime]);
 
   const timer = useRef();
   useEffect(() => {
@@ -72,7 +58,7 @@ function ActivityCard({
     return hours + ":" + minutes + ":" + seconds;
   };
 
-  const showDeleteConfirm = (_id) => {
+  const showDeleteConfirm = (id) => {
     Modal.confirm({
       title: "Are you sure to delete this activity?",
       icon: <ExclamationCircleFilled />,
@@ -81,156 +67,139 @@ function ActivityCard({
       okType: "danger",
       cancelText: "No",
       onOk() {
-        deleteItem(_id);
+        deleteItem(id);
       },
     });
   };
 
   const handleFinish = (item) => {
-    const updatedFields = {
+    const itemUpdatedTime = {
       ...item,
       actualTime: time,
     };
+    console.log(itemUpdatedTime);
     setIsRunning(false);
     setIsFinish(true);
-    updateItem(updatedFields);
+    updateItem(itemUpdatedTime);
     setTime(0);
   };
 
   return (
-    <div className="activityCard">
-      <h2>Welcome</h2>
-      <div className="activityCard-line2">
-        {date()}
-        <Button
-          ghost
-          className="activityCard-addActivityButton"
-          onClick={() => setFormDisplay({ ...emptyFields })}
-        >
-          + Activity
-        </Button>
+    <div className="activityCard-card">
+      <div className="activityCard-card-imageContainer">
+        <img
+          className="activityCard-card-image"
+          src={activityImage[eachCardItem.activityType]}
+        />
       </div>
-      <div className="activityCard-ListmemuLabel">List Menu</div>
-      <div className="activityCard-cards">
-        {activityItems.map((item) => {
-          return (
-            <div className="activityCard-card" key={item._id}>
-              <div className="activityCard-card-imageContainer">
-                <img
-                  className="activityCard-card-image"
-                  src={activityImage[item.activityType]}
-                />
-              </div>
-              <div className="activityCard-card-content">
-                <div className="activityCard-card-topContent">
-                  <div className="activityCard-card-topContent-left">
-                    Goal:{item.hourGoal} Hour {item.minuteGoal} Min
-                  </div>
-                  <div className="activityCard-card-topContent-right">
-                    <div className="activityCard-card-topContent-right-timeCounting">
-                      <FieldTimeOutlined style={{ width: "16px" }} />
-                      {item.actualTime > 0
-                        ? formatTime(item.actualTime)
-                        : formatTime(time)}
-                    </div>
-                    <Button
-                      className="editButton"
-                      onClick={() => {
-                        setFormDisplay({ ...item });
-                      }}
-                    >
-                      <EditOutlined />
-                    </Button>
-                    <Button
-                      className="deleteButton"
-                      onClick={() => showDeleteConfirm(item._id)}
-                    >
-                      <DeleteOutlined />
-                    </Button>
-                  </div>
-                </div>
-                <div className="activityCard-card-middleContent">
-                  {item.activityType}
-                </div>
-                <div className="activityCard-card-lastContent">
-                  <div className="activityCard-card-lastContent-text">
-                    <div
-                      style={{
-                        border: "2px solid #45ae3a",
-                        borderRadius: "50%",
-                      }}
-                    >
-                      <UserOutlined
-                        style={{
-                          color: "#45ae3a",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      />
-                    </div>
-                    {item.description}
-                  </div>
-                  <div className="activityCard-card-lastContent-buttons">
-                    {!isRunning &&
-                      !isFinish &&
-                      time === 0 &&
-                      !item.actualTime && (
-                        <Button
-                          className="card-startButton card-buttons"
-                          type="primary"
-                          onClick={() => setIsRunning(true)}
-                        >
-                          START
-                        </Button>
-                      )}
-                    {isRunning && !isFinish && !item.actualTime && (
-                      <Button
-                        className="card-finishButton card-buttons"
-                        type="primary"
-                        onClick={() => setIsRunning(false)}
-                      >
-                        Stop
-                      </Button>
-                    )}
-                    {!isRunning &&
-                      !isFinish &&
-                      time > 0 &&
-                      !item.actualTime && (
-                        <Button
-                          className="card-startButton card-buttons"
-                          type="primary"
-                          onClick={() => setIsRunning(true)}
-                        >
-                          RESUME
-                        </Button>
-                      )}
-
-                    {!isRunning &&
-                      !isFinish &&
-                      time > 0 &&
-                      !item.actualTime && (
-                        <Button
-                          className="card-finishButton card-buttons"
-                          type="primary"
-                          onClick={() => handleFinish(item)}
-                        >
-                          Finish
-                        </Button>
-                      )}
-                    {isFinish ||
-                      (item.actualTime && (
-                        <h4>
-                          Total time : {getHours(item.actualTime)} Hours{" "}
-                          {getMinutes(item.actualTime)} Minutes{" "}
-                          {getSeconds(item.actualTime)} Seconds
-                        </h4>
-                      ))}
-                  </div>
-                </div>
-              </div>
+      <div className="activityCard-card-content">
+        <div className="activityCard-card-topContent">
+          <div className="activityCard-card-topContent-left">
+            Goal:{eachCardItem.hourGoal} Hours {eachCardItem.minuteGoal} Mins
+          </div>
+          <div className="activityCard-card-topContent-right">
+            <div className="activityCard-card-topContent-right-timeCounting">
+              <FieldTimeOutlined style={{ width: "16px" }} />
+              {eachCardItem.actualTime > 0
+                ? formatTime(eachCardItem.actualTime)
+                : formatTime(time)}
             </div>
-          );
-        })}
+            <Button
+              className="editButton"
+              onClick={() => {
+                setFormDisplay({
+                  ...eachCardItem,
+                });
+              }}
+            >
+              <EditOutlined />
+            </Button>
+            <Button
+              className="deleteButton"
+              onClick={() => showDeleteConfirm(eachCardItem._id)}
+            >
+              <DeleteOutlined />
+            </Button>
+          </div>
+        </div>
+        <div className="activityCard-card-middleContent">
+          {eachCardItem.activityType}
+        </div>
+        <div className="activityCard-card-lastContent">
+          <div className="activityCard-card-lastContent-text">
+            <div
+              style={{
+                border: "2px solid #45ae3a",
+                borderRadius: "50%",
+              }}
+            >
+              <UserOutlined
+                style={{
+                  color: "#45ae3a",
+                  width: "22px",
+                  height: "22px",
+                }}
+              />
+            </div>
+            {eachCardItem.description}
+          </div>
+          <div className="activityCard-card-lastContent-buttons">
+            {!isRunning &&
+              !isFinish &&
+              time === 0 &&
+              !eachCardItem.actualTime && (
+                <Button
+                  className="card-startButton card-buttons"
+                  type="primary"
+                  onClick={() => setIsRunning(true)}
+                >
+                  START
+                </Button>
+              )}
+            {isRunning && !isFinish && !eachCardItem.actualTime && (
+              <Button
+                className="card-finishButton card-buttons"
+                type="primary"
+                onClick={() => setIsRunning(false)}
+              >
+                Stop
+              </Button>
+            )}
+            {!isRunning &&
+              !isFinish &&
+              time > 0 &&
+              !eachCardItem.actualTime && (
+                <Button
+                  className="card-startButton card-buttons"
+                  type="primary"
+                  onClick={() => setIsRunning(true)}
+                >
+                  RESUME
+                </Button>
+              )}
+
+            {!isRunning &&
+              !isFinish &&
+              time > 0 &&
+              !eachCardItem.actualTime && (
+                <Button
+                  className="card-finishButton card-buttons"
+                  type="primary"
+                  onClick={() => handleFinish(eachCardItem)}
+                >
+                  Finish
+                </Button>
+              )}
+            {isFinish ||
+              (eachCardItem.actualTime && (
+                <h4>
+                  Total time : {getHours(eachCardItem.actualTime)} Hours{" "}
+                  {getMinutes(eachCardItem.actualTime)} Minutes{" "}
+                  {getSeconds(eachCardItem.actualTime)} Seconds
+                </h4>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );
