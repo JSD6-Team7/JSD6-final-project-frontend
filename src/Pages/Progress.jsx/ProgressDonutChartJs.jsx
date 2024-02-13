@@ -12,44 +12,61 @@ const ProgressDonutChartJs = ({activitysListbyTypes}) => {
     labelByTypes.push(activitysListbyTypes[i]._id);
   };
 
-  // don't forget to delete console.log
-  console.log(durationByTypes);
-  console.log(labelByTypes);
-  console.log(activitysListbyTypes);
-
   const data = {
     labels: labelByTypes,
     datasets: [
       {
-        label: '# of Votes',
-        // data: [durationByTypes["body weight"], 19, 3, 5, 2],
+        label: 'Actual Duration Seconds',
         data: durationByTypes,
     
+        // backgroundColor: [
+        //   'rgba(255, 99, 132, 0.2)',
+        //   'rgba(54, 162, 235, 0.2)',
+        //   'rgba(255, 206, 86, 0.2)',
+        //   'rgba(75, 192, 192, 0.2)',
+        //   'rgba(153, 102, 255, 0.2)',
+        // ],
+
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-         
-          
+          'rgba(50,205,50, 0.2)', //limegreen
+          'rgba(107,142,35, 0.2)', //olivedrab
+          'rgba(173,255,47, 0.2)', //greenyellow
+          'rgba(0,255,127, 0.2)', //springgreen
+          'rgba(124,252,0, 0.2)', //lawngreen
         ],
+
+        // borderColor: [
+        //   'rgba(255, 99, 132, 1)',
+        //   'rgba(54, 162, 235, 1)',
+        //   'rgba(255, 206, 86, 1)',
+        //   'rgba(75, 192, 192, 1)',
+        //   'rgba(153, 102, 255, 1)',  
+        // ],
+
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-         
+          'rgba(50,205,50,1)',
+          'rgba(107,142,35,1)',
+          'rgba(173,255,47, 1)',
+          'rgba(0,255,127, 1)',
+          'rgba(124,252,0, 1)',
           
         ],
         borderWidth: 1,
       },
     ],
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      }
+    },
   };
 
   return (
     <div className="chart__container__donut" >
+      <h4 style={{"text-align":"center"}}>Activity by Type</h4>
       <Doughnut data={data} />
     </div>
   );

@@ -2,11 +2,14 @@ import React from "react";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
-const ProgressBarChartJs = ( {activitysList}) => {
-  activitysList
 
-  var  day0, day1, day2, day3, day4, day5, day6;
-  
+const ProgressBarChartJs = ( {activitysListbyDate}) => {
+  const dataBydate = [0, 0, 0, 0, 0, 0, 0];
+
+  activitysListbyDate.map((item) => {
+    dataBydate[item._id.dayOfWeek - 1] = item.totalActualTime ;
+  });
+
   const labels = [
     "Sunday",
     "Monday",
@@ -16,19 +19,21 @@ const ProgressBarChartJs = ( {activitysList}) => {
     "Friday",
     "Saturday",
   ];
+  
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Duration",
-        backgroundColor: "rgb(69, 174, 58)",
-        borderColor: "rgb(69, 174, 58)",
-        data: [13, 10, 5, 2, 20, 30, 45, 23],
+        backgroundColor: "rgba(69, 174, 58, 0.8)",
+        borderColor: "rgba(69, 174, 58, 1)",
+        data: dataBydate,
       },
     ],
   };
   return (
     <div className="chart__container__bar" >
+      <h4 style={{"text-align":"center"}}>Activity by Day</h4>
       <Bar data={data} />
     </div>
   );
