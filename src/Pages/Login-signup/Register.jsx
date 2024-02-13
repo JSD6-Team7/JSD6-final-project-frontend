@@ -53,7 +53,7 @@ const Register = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
     axios
-      .post("http://localhost:8000/signup", values)
+      .post("http://localhost:3000/signup", values)
       .then((response) => {
         if (response.status === 200) {
           console.log(`Response from API : ${response.data}`);

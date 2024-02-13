@@ -18,7 +18,7 @@ const Login = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     axios
-      .post("http://localhost:8000/login", values)
+      .post("http://localhost:3000/login", values)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
