@@ -15,12 +15,12 @@
     height: 40px;
     display: flex;
     align-items: center;
-    margin: 32px 0px;
+    margin-top: 32px;
     border-bottom: 2px solid #0000001a;
 }
 
 .headunderline div {
-    padding-bottom: 48px;
+    margin-bottom: 48px;
 }
 .headunderline-item {
     width: 816px;
@@ -129,12 +129,52 @@
 
 .sub-content-head {
     display: flex;
-    flex-direction: column;
-    margin: 15px 0;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 15px;
+    margin-left: -250px
 } 
 
+.button-section {
+    display: flex;
+    flex-direction: row;
+    margin-top: -5px;
+}
+
+.penbutton {
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #45ae3a;
+    margin-left: 95px
+}
+
+.penbutton:hover,
+.penbutton:active {
+    background: transparent;
+    border: 1px solid white !important;
+    color: #45ae3a !important;
+}
+
+.binbutton {
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f35656;
+    margin-left: 5px
+}
+
+.binbutton:hover,
+.binbutton:active {
+    background: transparent;
+    border: 1px solid white !important;
+    color: #f35656 !important;
+}
+
 .sub-content-des {
-    margin-top: 15px;
+    margin-top: 8px;
     padding: 10px;
     border-radius: 12px;
     border: 1px solid rgb(242,242,242);
