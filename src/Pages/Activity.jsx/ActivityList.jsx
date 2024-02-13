@@ -1,11 +1,14 @@
 import "./activityCardStyle.css";
 import "./activityFormStyle.css";
+import "./activityHeader.css";
 import Layout from "../Layout";
 import ActivityCard from "./ActivityCard";
 import ActivityForm from "./ActivityForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
+import ActivityHeader from "./ActivityHeader";
+import { Flex } from "antd";
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
@@ -32,7 +35,7 @@ function ActivityList() {
     axios
       .get(`http://localhost:3000/activityInfo/${user_id}?date=${currentDate}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         setActivityItems((prev) => {
           return response.data.map((each) => {
             return { ...each, date: dayjs(each.date) };
@@ -91,51 +94,31 @@ function ActivityList() {
       });
   };
 
-  // const createItem = (item) => {
-  //   setActivityItems((prev) => {
-  //     return [...prev, { ...item, id: uuid() }];
-  //   });
-  //   console.log(activityItems);
-  // };
-  // const deleteItem = (id) => {
-  //   setActivityItems((prev) => {
-  //     return prev.filter((each) => {
-  //       return each.id !== id;
-  //     });
-  //   });
-  // };
-  // const updateItem = (item) => {
-  //   console.log(item);
-  //   setActivityItems((prev) => {
-  //     return prev.map((each) => {
-  //       if (each.id === item.id) {
-  //         if (each.actualTime) return { ...item, actualTime: each.actualTime };
-  //         else {
-  //           return item;
-  //         }
-  //       } else {
-  //         return each;
-  //       }
-  //     });
-  //   });
-  // };
-
   return (
     <Layout>
-      <ActivityCard
-        activityItems={activityItems}
-        deleteItem={deleteItem}
-        setFormDisplay={setFormDisplay}
-        updateItem={updateItem}
-      />
-      <ActivityForm
-        isFormOpen={isFormOpen}
-        setIsFormOpen={setIsFormOpen}
-        createItem={createItem}
-        updateItem={updateItem}
-        formDisplay={formDisplay}
-        setFormDisplay={setFormDisplay}
-      />
+      <Flex vertical style={{ padding: "96px 128px 0px 128px" }}>
+        <ActivityHeader setFormDisplay={setFormDisplay} />
+        {activityItems.map((item) => {
+          return (
+            <ActivityCard
+              key={item._id}
+              eachCardItem={item}
+              deleteItem={deleteItem}
+              setFormDisplay={setFormDisplay}
+              updateItem={updateItem}
+            />
+          );
+        })}
+
+        <ActivityForm
+          isFormOpen={isFormOpen}
+          setIsFormOpen={setIsFormOpen}
+          createItem={createItem}
+          updateItem={updateItem}
+          formDisplay={formDisplay}
+          setFormDisplay={setFormDisplay}
+        />
+      </Flex>
     </Layout>
   );
 }
