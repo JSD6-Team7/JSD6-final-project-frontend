@@ -9,6 +9,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import ActivityHeader from "./ActivityHeader";
 import { Flex } from "antd";
+import { Content } from "antd/es/layout/layout";
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
@@ -98,18 +99,19 @@ function ActivityList() {
     <Layout>
       <Flex vertical style={{ padding: "96px 128px 0px 128px" }}>
         <ActivityHeader setFormDisplay={setFormDisplay} />
-        {activityItems.map((item) => {
-          return (
-            <ActivityCard
-              key={item._id}
-              eachCardItem={item}
-              deleteItem={deleteItem}
-              setFormDisplay={setFormDisplay}
-              updateItem={updateItem}
-            />
-          );
-        })}
-
+        <Content>
+          {activityItems.map((item) => {
+            return (
+              <ActivityCard
+                key={item._id}
+                eachCardItem={item}
+                deleteItem={deleteItem}
+                setFormDisplay={setFormDisplay}
+                updateItem={updateItem}
+              />
+            );
+          })}
+        </Content>
         <ActivityForm
           isFormOpen={isFormOpen}
           setIsFormOpen={setIsFormOpen}
