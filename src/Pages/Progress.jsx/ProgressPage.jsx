@@ -23,7 +23,6 @@ function ProgressPage() {
     if (queryDate) {
       getActivityInfo();
     }
-    // console.log("useEffect", queryDate);
   }, [queryDate]);
 
   useEffect(() => {
@@ -37,12 +36,7 @@ function ProgressPage() {
   };
 
   const getActivityInfo = () => {
-    const apiKeyGetActivityInfo = import.meta.env
-      .VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
-
-    // test queryDate
-    console.log("queryDate", queryDate);
-
+    const apiKeyGetActivityInfo = import.meta.env.VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
     const userID_queryDate = { user_id, selectedDate: queryDate };
 
     axios
@@ -50,34 +44,15 @@ function ProgressPage() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        // test
-        console.log("userID_queryDate", userID_queryDate);
-        console.log("response", response.data);
-
-        //   setActivityItems((prev) => {
-        //     return response.data.map((each) => {
-        //       return { ...each, date: dayjs(each.date) };
-        //     });
-        //   });
-        // })
         setActivityItems((prev) => {
           return response.data
             .map((each) => ({ ...each, date: dayjs(each.date) }))
             .filter((item) => item.actualTime);
         });
       })
-
       .catch((error) => {
         console.error("Error: ", error);
       });
-    // test
-    const activityItemsActual = activityItems.filter((item) => {
-      return item.actualTime;
-    });
-
-    // setActivityItems(activityItemsActual);
-    console.log("activityItemsActual ", activityItemsActual);
-    console.log("activityItems ", activityItems);
   };
 
   const onSelectedDateChange = (date) => {
@@ -97,7 +72,9 @@ function ProgressPage() {
             />
           </div>
         </div>
-        <ProgressChart />
+        <ProgressChart 
+          queryDate={queryDate}
+        />
         <Content style={{ height: "390px", width: "auto",overflow: "auto" }}>
           {activityItems.map((item, index) => {
             return (
