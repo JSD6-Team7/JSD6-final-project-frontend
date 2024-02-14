@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { PlusCircleFilled, MinusCircleFilled } from '@ant-design/icons'
+// import React, { useEffect, useState } from 'react';
+import { Button, Modal } from "antd";
+import { PlusCircleFilled, MinusCircleFilled, EditOutlined, DeleteOutlined, ExclamationCircleFilled } from '@ant-design/icons'
 
+const emptyFields = {
+  video: "",
+  label: "",
+  descriptions: "",
+};
 
-const Accordion = ( { items, keepOthersOpen } ) => {
-
-  const [accordionItems, setAccordionItems ] = useState(null)
-
-  useEffect(() => {
-    if (items) {
-      setAccordionItems([
-        ...items.map(item => ({
-          ...item,
-          toggled: false
-        }))
-      ])
-    }
-  }, [items])
+const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteItem, setFormDisplay } ) => {
 
   function handleAccordionToggle(clickedItem) {
     setAccordionItems([
@@ -27,31 +20,51 @@ const Accordion = ( { items, keepOthersOpen } ) => {
         } else if (!keepOthersOpen) {
           toggled = false
         }
-
         return  {
           ...item,
           toggled
         }
       })
     ])
-  }
+  };
+
+  const showDeleteConfirm = (id) => {
+    Modal.confirm({
+      title: "Are you sure to delete this activity?",
+      icon: <ExclamationCircleFilled />,
+      centered: true,
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        deleteItem(id);
+      },
+    });
+  };
 
   return( 
     <div className='accordion-parent'>
       <div className='headunderline'>
         <h2 className='headunderline-item'>Video Tutorial</h2>
         <div>
-          <button className='headunderline-button'>+ Video</button>
+          <Button 
+            ghost          
+            className='headunderline-button'          
+            onClick={() => setFormDisplay({ ...emptyFields })}
+          >
+            + Video
+          </Button>
         </div>
       </div>
+      {console.log(accordionItems)}
       {accordionItems?.map((listItem, key) => {
         return (
           
-          <div class={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
+          <div className={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
             <button className='toggle' onClick={() => handleAccordionToggle(listItem)}>
               <div className='labelcard'>
                 <div className='number-highlighted'>
-                  <p>{listItem.index + 1}</p>
+                  <p>{key + 1}</p>
                 </div>
                 <p className='labelheadline'>{listItem.label}</p>
               </div>
@@ -59,12 +72,20 @@ const Accordion = ( { items, keepOthersOpen } ) => {
             </button>
             <div className='content-parent'>
               <div className='content'>
-                <iframe src={listItem.video} width="784" height="441" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe src={listItem.video} width="784" height="441" frameBorder="0" allowFullScreen={true}></iframe>
                 <div className="sub-content-head">
-                  <label>Descriptions:</label>
-                  <div className="sub-content-des">
-                      <p>{listItem.descriptions}</p>
+                  <label>Descriptions:</label> 
+                  <div className="button-section">
+                    <Button className="penbutton" onClick={() => setFormDisplay({ ...listItem })}>
+                      <EditOutlined />
+                    </Button>
+                    <Button className="binbutton" onClick={() => showDeleteConfirm(listItem.id)}>
+                      <DeleteOutlined />
+                    </Button>
                   </div>
+                </div>
+                <div className="sub-content-des">
+                      <p>{listItem.descriptions}</p>
                 </div>
               </div>
             </div>
