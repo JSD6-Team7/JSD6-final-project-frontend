@@ -6,48 +6,78 @@ import { useEffect, useState } from "react";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import axios from "axios";
+import { Content } from "antd/es/layout/layout";
 
 function ProgressPage() {
-  const [queryDate, setQueryDate] = useState(dayjs(new Date()));
   const [activityItems, setActivityItems] = useState([]);
-  // test variables
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjVjYjZlMjQzNTU5NmQ1YmIyMGVjNGRhIiwidXNlcm5hbWUiOiJhbGljZSIsImVtYWlsIjoiYWxpY2VAZW1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNzA3OTI2ODY0LCJleHAiOjE3MDg1MzE2NjR9.PxZT-rPWyB0XYtHHbAmcGbm5-edufuuL0GihZYnl8uo";
-  const user_id = "65cb6e2435596d5bb20ec4da";
+  const [queryDate, setQueryDate] = useState(dayjs(new Date()));
+
+  // get user data from localStorage
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const user_id = userObject.user_id;
+  const token = userObject.token;
 
   useEffect(() => {
     // Call the getActivityInfo function whenever queryDate changes
-    getActivityInfo(queryDate);
-    console.log("useEffect", queryDate);
+    if (queryDate) {
+      getActivityInfo();
+    }
+    // console.log("useEffect", queryDate);
   }, [queryDate]);
+
+  useEffect(() => {
+    getActivityInfo();
+  }, []);
 
   const date = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toDateString();
-    return <p className="activityCard-date">Today : {formattedDate}</p>;
+    return <p className="activityCard-date">{formattedDate}</p>;
   };
 
   const getActivityInfo = () => {
-    console.log(queryDate);
-    const userID_queryDate = { user_id, queryDate };
+    const apiKeyGetActivityInfo = import.meta.env
+      .VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
+
+    // test queryDate
+    console.log("queryDate", queryDate);
+
+    const userID_queryDate = { user_id, selectedDate: queryDate };
+
     axios
-      .post("http://localhost:3000/activityInfoGetData", userID_queryDate, {
+      .post(apiKeyGetActivityInfo, userID_queryDate, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         // test
         console.log("userID_queryDate", userID_queryDate);
         console.log("response", response.data);
+
+        //   setActivityItems((prev) => {
+        //     return response.data.map((each) => {
+        //       return { ...each, date: dayjs(each.date) };
+        //     });
+        //   });
+        // })
         setActivityItems((prev) => {
-          return response.data.map((each) => {
-            return { ...each, date: dayjs(each.date) };
-          });
+          return response.data
+            .map((each) => ({ ...each, date: dayjs(each.date) }))
+            .filter((item) => item.actualTime);
         });
       })
+
       .catch((error) => {
         console.error("Error: ", error);
       });
     // test
-    console.log("activityItems ",activityItems);
+    const activityItemsActual = activityItems.filter((item) => {
+      return item.actualTime;
+    });
+
+    // setActivityItems(activityItemsActual);
+    console.log("activityItemsActual ", activityItemsActual);
+    console.log("activityItems ", activityItems);
   };
 
   const onSelectedDateChange = (date) => {
@@ -57,16 +87,28 @@ function ProgressPage() {
   return (
     <Layout>
       <div className="progress">
-        <div className='head'>
+        <div className="head">
           <h2>Progress</h2>
-          {/* {date()} */}
-          <DatePicker
-            onChange={onSelectedDateChange}
-            defaultValue={dayjs(new Date())}
-      />
+          {date()}
+          <div style={{ "margin-top": "10px" }}>
+            <DatePicker
+              onChange={onSelectedDateChange}
+              defaultValue={dayjs(new Date())}
+            />
+          </div>
         </div>
         <ProgressChart />
-        <ProgressActivityCard />
+        <Content style={{ height: "390px", width: "auto",overflow: "auto" }}>
+          {activityItems.map((item, index) => {
+            return (
+              <ProgressActivityCard
+                key={item._id}
+                index={index}
+                eachCardItem={item}
+              />
+            );
+          })}
+        </Content>
       </div>
     </Layout>
   );

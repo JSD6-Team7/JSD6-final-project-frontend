@@ -31,8 +31,9 @@ function ProgressChart() {
         getDataDate();
 
     }, [reload]);
-    console.log("date", activitysListbyDate);
-    console.log("types", activitysListbyTypes);
+    // test
+    // console.log("date", activitysListbyDate);
+    // console.log("types", activitysListbyTypes);
 
     return (
         <div className='chart'>
