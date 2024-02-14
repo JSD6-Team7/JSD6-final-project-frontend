@@ -66,7 +66,7 @@ const ProgressDonutChartJs = ({activitysListbyTypes}) => {
 
   return (
     <div className="chart__container__donut" >
-      <h4 style={{"text-align":"center"}}>Activity by Type</h4>
+      <h4 style={{"text-align":"center"}}>Activities Types this Week</h4>
       <Doughnut data={data} />
     </div>
   );

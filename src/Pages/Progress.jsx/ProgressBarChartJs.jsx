@@ -33,7 +33,7 @@ const ProgressBarChartJs = ( {activitysListbyDate}) => {
   };
   return (
     <div className="chart__container__bar" >
-      <h4 style={{"text-align":"center"}}>Activity by Day</h4>
+      <h4 style={{"text-align":"center"}}>Activities this Week</h4>
       <Bar data={data} />
     </div>
   );
