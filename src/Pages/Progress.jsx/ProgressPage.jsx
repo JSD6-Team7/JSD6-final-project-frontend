@@ -5,13 +5,18 @@ import ProgressActivityCard from "./ProgressActivityCard";
 import { useEffect, useState } from "react";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
+import axios from "axios";
 
 function ProgressPage() {
   const [queryDate, setQueryDate] = useState(dayjs(new Date()));
-  
+  const [activityItems, setActivityItems] = useState([]);
+  // test variables
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjVjYjZlMjQzNTU5NmQ1YmIyMGVjNGRhIiwidXNlcm5hbWUiOiJhbGljZSIsImVtYWlsIjoiYWxpY2VAZW1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNzA3OTI2ODY0LCJleHAiOjE3MDg1MzE2NjR9.PxZT-rPWyB0XYtHHbAmcGbm5-edufuuL0GihZYnl8uo";
+  const user_id = "65cb6e2435596d5bb20ec4da";
+
   useEffect(() => {
     // Call the getActivityInfo function whenever queryDate changes
-    // getActivityInfo(queryDate);
+    getActivityInfo(queryDate);
     console.log("useEffect", queryDate);
   }, [queryDate]);
 
@@ -22,14 +27,16 @@ function ProgressPage() {
   };
 
   const getActivityInfo = () => {
-    console.log(selectedDate);
-    const userID_selectedDate = { user_id, selectedDate };
+    console.log(queryDate);
+    const userID_queryDate = { user_id, queryDate };
     axios
-      .post("http://localhost:3000/activityInfoGetData", userID_selectedDate, {
+      .post("http://localhost:3000/activityInfoGetData", userID_queryDate, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        // test
+        console.log("userID_queryDate", userID_queryDate);
+        console.log("response", response.data);
         setActivityItems((prev) => {
           return response.data.map((each) => {
             return { ...each, date: dayjs(each.date) };
@@ -39,6 +46,8 @@ function ProgressPage() {
       .catch((error) => {
         console.error("Error: ", error);
       });
+    // test
+    console.log("activityItems ",activityItems);
   };
 
   const onSelectedDateChange = (date) => {
