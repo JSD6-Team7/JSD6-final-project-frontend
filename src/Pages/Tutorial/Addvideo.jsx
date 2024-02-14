@@ -71,30 +71,30 @@ function Addvideo({
                         <Form.Item
                             labelAlign="left"
                             label="Video"
-                            name="videoLink"
+                            name="video"
                             rules={[
                                 {
                                     required: true,
                                 },
                             ]}
                         >
-                            <Input placeholder="Place Youtube url here" id="videoLink" />
+                            <Input placeholder="Place Youtube url here" id="video" />
                         </Form.Item>
                         <Form.Item
                             labelAlign="left"
                             label="Title"
-                            name="videoTitle"
+                            name="label"
                             rules={[
                                 {
                                     required: true,
                                 },
                             ]}
                         >
-                            <Input placeholder="Enter the video title" id="videoTitle" />
+                            <Input placeholder="Enter the video title" id="label" />
                         </Form.Item>
 
-                        <Form.Item labelAlign="left" label="Description" name="description">
-                            <Input placeholder="Enter your Description" id="description" />
+                        <Form.Item labelAlign="left" label="Description" name="descriptions">
+                            <Input placeholder="Enter your Description" id="descriptions" />
                         </Form.Item>
                         <div className="button">
                             <Button className="cancelButton" onClick={handleCancleButton}>

@@ -26,7 +26,7 @@ const newData = data.map((item, index) => ({ ...item, index }));
 const items = newData;
 
 function TutorialPage() {
-  const [accordionItems, setAccordionItems] = useState(null);
+  const [accordionItems, setAccordionItems] = useState(items);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formDisplay, setFormDisplay] = useState();
 
@@ -50,9 +50,8 @@ function TutorialPage() {
 
   const createItem = (item) => {
     setAccordionItems((prev) => {
-      return [...prev, { ...item, id: uuid() }];
+      return [...prev, { ...item, id: uuid(), index: prev.length}];
     });
-    console.log(accordionItems);
   };
   const deleteItem = (id) => {
     setAccordionItems((prev) => {
@@ -66,6 +65,7 @@ function TutorialPage() {
     setAccordionItems((prev) => {
       return prev.map((each) => {
         if (each.id === item.id) {
+          return item;
         } else {
           return each;
         }
@@ -81,7 +81,6 @@ function TutorialPage() {
             setAccordionItems={setAccordionItems}
             deleteItem={deleteItem}
             setFormDisplay={setFormDisplay}
-            updateItem={updateItem}
           />
           <Addvideo
             isFormOpen={isFormOpen}

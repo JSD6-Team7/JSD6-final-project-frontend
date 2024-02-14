@@ -3,12 +3,12 @@ import { Button, Modal } from "antd";
 import { PlusCircleFilled, MinusCircleFilled, EditOutlined, DeleteOutlined, ExclamationCircleFilled } from '@ant-design/icons'
 
 const emptyFields = {
-  videoLink: "",
-  videoTitle: "",
-  description: "",
+  video: "",
+  label: "",
+  descriptions: "",
 };
 
-const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteItem, setFormDisplay, updateItem, } ) => {
+const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteItem, setFormDisplay } ) => {
 
   function handleAccordionToggle(clickedItem) {
     setAccordionItems([
@@ -42,13 +42,6 @@ const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteI
     });
   };
 
-  const handleFinish = (item) => {
-    const updatedFields = {
-      ...item,
-    };
-    updateItem(updatedFields);
-  };
-
   return( 
     <div className='accordion-parent'>
       <div className='headunderline'>
@@ -63,14 +56,15 @@ const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteI
           </Button>
         </div>
       </div>
+      {console.log(accordionItems)}
       {accordionItems?.map((listItem, key) => {
         return (
           
-          <div class={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
+          <div className={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
             <button className='toggle' onClick={() => handleAccordionToggle(listItem)}>
               <div className='labelcard'>
                 <div className='number-highlighted'>
-                  <p>{listItem.index + 1}</p>
+                  <p>{key + 1}</p>
                 </div>
                 <p className='labelheadline'>{listItem.label}</p>
               </div>
@@ -78,7 +72,7 @@ const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteI
             </button>
             <div className='content-parent'>
               <div className='content'>
-                <iframe src={listItem.video} width="784" height="441" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe src={listItem.video} width="784" height="441" frameBorder="0" allowFullScreen={true}></iframe>
                 <div className="sub-content-head">
                   <label>Descriptions:</label> 
                   <div className="button-section">
