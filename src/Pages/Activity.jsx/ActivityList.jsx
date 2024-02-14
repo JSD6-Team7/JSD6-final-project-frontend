@@ -15,6 +15,7 @@ function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formDisplay, setFormDisplay] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(dayjs(new Date()));
 
   const userString = localStorage.getItem("user");
   const userObject = JSON.parse(userString);
@@ -32,9 +33,17 @@ function ActivityList() {
     }
   }, [formDisplay]);
 
+  useEffect(() => {
+    if (selectedDate) {
+      getActivityInfo();
+    }
+  }, [selectedDate]);
+
   const getActivityInfo = () => {
+    console.log(selectedDate);
+    const userID_selectedDate = { user_id, selectedDate };
     axios
-      .get(`http://localhost:3000/activityInfo/${user_id}`, {
+      .post("http://localhost:3000/activityInfoGetData", userID_selectedDate, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -56,7 +65,7 @@ function ActivityList() {
     console.log(newActivity.date);
     axios
       .post("http://localhost:3000/activityInfo", newActivity, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 201) {
@@ -71,7 +80,7 @@ function ActivityList() {
   const deleteItem = (id) => {
     axios
       .delete(`http://localhost:3000/activityInfo/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -89,7 +98,7 @@ function ActivityList() {
     console.log(item);
     axios
       .put("http://localhost:3000/activityInfo", item, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -106,8 +115,11 @@ function ActivityList() {
   return (
     <Layout>
       <Flex vertical style={{ padding: "96px 128px 0px 128px" }}>
-        <ActivityHeader setFormDisplay={setFormDisplay} />
-        <Content>
+        <ActivityHeader
+          setFormDisplay={setFormDisplay}
+          setSelectedDate={setSelectedDate}
+        />
+        <Content style={{ height: "100vh", overflow: "auto" }}>
           {activityItems.map((item) => {
             return (
               <ActivityCard
