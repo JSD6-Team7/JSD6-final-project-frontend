@@ -17,7 +17,8 @@
 }
 
 .chart__container__donut {
-   height:224px; 
+   /* height:224px;  */
+   height:300px; 
    width:224px;
 }
 
