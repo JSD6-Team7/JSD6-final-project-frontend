@@ -79,7 +79,7 @@ const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteI
                     <Button className="penbutton" onClick={() => setFormDisplay({ ...listItem })}>
                       <EditOutlined />
                     </Button>
-                    <Button className="binbutton" onClick={() => showDeleteConfirm(listItem.id)}>
+                    <Button className="binbutton" onClick={() => showDeleteConfirm(listItem._id)}>
                       <DeleteOutlined />
                     </Button>
                   </div>
