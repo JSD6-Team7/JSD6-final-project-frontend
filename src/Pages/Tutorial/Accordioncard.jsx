@@ -15,7 +15,7 @@ const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteI
       ...accordionItems.map((item) => {
         let toggled = item.toggled
 
-        if (clickedItem.id === item.id) {
+        if (clickedItem._id === item._id) {
           toggled = !item.toggled
         } else if (!keepOthersOpen) {
           toggled = false
