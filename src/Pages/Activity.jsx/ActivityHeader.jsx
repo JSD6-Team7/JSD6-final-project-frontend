@@ -1,6 +1,7 @@
-import { Button } from "antd";
+import { Button, DatePicker, Flex } from "antd";
+import dayjs from "dayjs";
 
-function ActivityHeader({ setFormDisplay }) {
+function ActivityHeader({ setFormDisplay, setSelectedDate }) {
   const emptyFields = {
     activityName: "",
     description: "",
@@ -13,6 +14,11 @@ function ActivityHeader({ setFormDisplay }) {
     const currentDate = new Date();
     const formattedDate = currentDate.toDateString();
     return <p className="activityHeader-date">{formattedDate}</p>;
+  };
+
+  const onSelectedDateChange = (date) => {
+    console.log(date);
+    setSelectedDate(date);
   };
 
   return (
@@ -28,7 +34,16 @@ function ActivityHeader({ setFormDisplay }) {
           + Activity
         </Button>
       </div>
-      <div className="activityHeader-ListmemuLabel">List Menu</div>
+
+      <div className="activityHeader-ListmemuLabel">
+        <Flex justify="space-between" align="center">
+          <h4>List Menu</h4>
+          <DatePicker
+            onChange={onSelectedDateChange}
+            defaultValue={dayjs(new Date())}
+          />
+        </Flex>
+      </div>
     </div>
   );
 }

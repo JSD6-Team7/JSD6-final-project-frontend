@@ -11,10 +11,19 @@ import ActivityHeader from "./ActivityHeader";
 import { Flex } from "antd";
 import { Content } from "antd/es/layout/layout";
 
+const protocal = import.meta.env.VITE_HTTP_PROTOCAL;
+const domain = import.meta.env.VITE_DOMAIN;
+const port = import.meta.env.VITE_PORT;
+
+console.log(protocal);
+console.log(domain);
+console.log(port);
+
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formDisplay, setFormDisplay] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(dayjs(new Date()));
 
   const userString = localStorage.getItem("user");
   const userObject = JSON.parse(userString);
@@ -32,11 +41,23 @@ function ActivityList() {
     }
   }, [formDisplay]);
 
+  useEffect(() => {
+    if (selectedDate) {
+      getActivityInfo();
+    }
+  }, [selectedDate]);
+
   const getActivityInfo = () => {
+    console.log(selectedDate);
+    const userID_selectedDate = { user_id, selectedDate };
     axios
-      .get(`http://localhost:3000/activityInfo/${user_id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post(
+        `${protocal}://${domain}:${port}/activityInfoGetData`,
+        userID_selectedDate,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         setActivityItems((prev) => {
@@ -55,8 +76,8 @@ function ActivityList() {
     const newActivity = { ...item, user_id };
     console.log(newActivity.date);
     axios
-      .post("http://localhost:3000/activityInfo", newActivity, {
-        headers: { Authorization: `Bearer ${token}` }
+      .post(`${protocal}://${domain}:${port}/activityInfo`, newActivity, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 201) {
@@ -70,8 +91,8 @@ function ActivityList() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:3000/activityInfo/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      .delete(`${protocal}://${domain}:${port}/activityInfo/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -88,8 +109,8 @@ function ActivityList() {
   const updateItem = (item) => {
     console.log(item);
     axios
-      .put("http://localhost:3000/activityInfo", item, {
-        headers: { Authorization: `Bearer ${token}` }
+      .put(`${protocal}://${domain}:${port}/activityInfo`, item, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -106,8 +127,11 @@ function ActivityList() {
   return (
     <Layout>
       <Flex vertical style={{ padding: "96px 128px 0px 128px" }}>
-        <ActivityHeader setFormDisplay={setFormDisplay} />
-        <Content>
+        <ActivityHeader
+          setFormDisplay={setFormDisplay}
+          setSelectedDate={setSelectedDate}
+        />
+        <Content style={{ height: "100vh", overflow: "auto" }}>
           {activityItems.map((item) => {
             return (
               <ActivityCard
