@@ -13,17 +13,16 @@
     "@ant-design/charts": "^2.0.3",
     "@ant-design/colors": "^7.0.2",
     "@ant-design/icons": "^5.2.6",
-    "axios": "^1.6.7",
-    "dayjs": "^1.11.10",
     "@ant-design/pro-components": "^2.6.48",
     "antd": "^5.13.2",
+    "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "chartjs": "^0.3.24",
+    "dayjs": "^1.11.10",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
-    "uuid": "^9.0.1"
+    "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

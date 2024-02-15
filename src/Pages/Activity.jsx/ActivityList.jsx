@@ -11,6 +11,14 @@ import ActivityHeader from "./ActivityHeader";
 import { Flex } from "antd";
 import { Content } from "antd/es/layout/layout";
 
+const protocal = import.meta.env.VITE_HTTP_PROTOCAL;
+const domain = import.meta.env.VITE_DOMAIN;
+const port = import.meta.env.VITE_PORT;
+
+console.log(protocal);
+console.log(domain);
+console.log(port);
+
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -43,9 +51,13 @@ function ActivityList() {
     console.log(selectedDate);
     const userID_selectedDate = { user_id, selectedDate };
     axios
-      .post("http://localhost:3000/activityInfoGetData", userID_selectedDate, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post(
+        `${protocal}://${domain}:${port}/activityInfoGetData`,
+        userID_selectedDate,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         setActivityItems((prev) => {
@@ -64,7 +76,7 @@ function ActivityList() {
     const newActivity = { ...item, user_id };
     console.log(newActivity.date);
     axios
-      .post("http://localhost:3000/activityInfo", newActivity, {
+      .post(`${protocal}://${domain}:${port}/activityInfo`, newActivity, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -79,7 +91,7 @@ function ActivityList() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:3000/activityInfo/${id}`, {
+      .delete(`${protocal}://${domain}:${port}/activityInfo/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -97,7 +109,7 @@ function ActivityList() {
   const updateItem = (item) => {
     console.log(item);
     axios
-      .put("http://localhost:3000/activityInfo", item, {
+      .put(`${protocal}://${domain}:${port}/activityInfo`, item, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
