@@ -17,7 +17,7 @@ const EditProfileShow = () => {
   return (
     <>
       <div className="card">
-        <h2 class="mt">Edit Profile</h2>
+        <h2 className="mt">Edit Profile</h2>
         <div className="wrapper-edit" style={{ marginLeft: 120 }}>
           <Avatar
             shape="square"
