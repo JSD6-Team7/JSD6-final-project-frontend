@@ -56,7 +56,7 @@ const Accordion = ({
   return (
     <div className="accordion-parent">
       <div className="headunderline">
-        <h2 className="headunderline-item">Video Tutorial</h2>
+        <h2 className="headunderline-item">Video</h2>
         <div>
           <Button
             ghost

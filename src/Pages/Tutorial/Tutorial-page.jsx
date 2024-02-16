@@ -3,7 +3,14 @@ import "./TutorialCSS.css";
 import Accordian from "../Tutorial/Accordioncard.jsx";
 import Addvideo from "../Tutorial/Addvideo.jsx";
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+
+const apiKeyGetTutorials = import.meta.env
+  .VITE_REACT_APP_API_KEY_TUTORIALS_INFO;
+const apiKeyCreateTutorials = import.meta.env
+  .VITE_REACT_APP_API_KEY_CREATE_TUTORIALS_INFO;
+const apiKeyDeleteUpdateTutorials = import.meta.env
+  .VITE_REACT_APP_API_KEY_DELETE_UPDATE_TUTORIALS_INFO;
 
 function TutorialPage() {
   const [accordionItems, setAccordionItems] = useState(null);
@@ -39,9 +46,13 @@ function TutorialPage() {
 
   const getVideoInfo = () => {
     axios
-      .post(`http://localhost:3000/tutorialsGetData`, {user_id}, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post(
+        apiKeyGetTutorials,
+        { user_id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         setAccordionItems(response.data);
       })
@@ -55,8 +66,8 @@ function TutorialPage() {
     const swapUrl = item.video.replace("watch?v=", "embed/");
     const newVideo = { ...item, user_id, video: swapUrl };
     axios
-      .post("http://localhost:3000/tutorialsCreateData", newVideo, {
-        headers: { Authorization: `Bearer ${token}` }
+      .post(apiKeyCreateTutorials, newVideo, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 201) {
@@ -71,8 +82,8 @@ function TutorialPage() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:3000/tutorials/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      .delete(`${apiKeyDeleteUpdateTutorials}/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -91,8 +102,8 @@ function TutorialPage() {
     const swapUrl = item.video.replace("watch?v=", "embed/");
     const newVideo = { ...item, video: swapUrl };
     axios
-      .put("http://localhost:3000/tutorials", newVideo, {
-        headers: { Authorization: `Bearer ${token}` }
+      .put(apiKeyDeleteUpdateTutorials, newVideo, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (response.status === 200) {
@@ -137,23 +148,23 @@ function TutorialPage() {
   //   });
   // };
 
-
   return (
     <Layout>
-          <Accordian keepOthersOpen={false}
-            accordionItems={accordionItems}
-            setAccordionItems={setAccordionItems}
-            deleteItem={deleteItem}
-            setFormDisplay={setFormDisplay}
-          />
-          <Addvideo
-            isFormOpen={isFormOpen}
-            setIsFormOpen={setIsFormOpen}
-            createItem={createItem}
-            updateItem={updateItem}
-            formDisplay={formDisplay}
-            setFormDisplay={setFormDisplay}
-          />
+      <Accordian
+        keepOthersOpen={false}
+        accordionItems={accordionItems}
+        setAccordionItems={setAccordionItems}
+        deleteItem={deleteItem}
+        setFormDisplay={setFormDisplay}
+      />
+      <Addvideo
+        isFormOpen={isFormOpen}
+        setIsFormOpen={setIsFormOpen}
+        createItem={createItem}
+        updateItem={updateItem}
+        formDisplay={formDisplay}
+        setFormDisplay={setFormDisplay}
+      />
     </Layout>
   );
 }

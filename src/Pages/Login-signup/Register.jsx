@@ -17,6 +17,8 @@ import "./index.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const apiKeySignup = import.meta.env.VITE_REACT_APP_API_KEY_SIGNUP;
+
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -53,7 +55,7 @@ const Register = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
     axios
-      .post("http://localhost:3000/signup", values)
+      .post(apiKeySignup, values)
       .then((response) => {
         if (response.status === 200) {
           console.log(`Response from API : ${response.data}`);
@@ -254,10 +256,11 @@ const Register = () => {
             ]}
             hasFeedback
           >
-            <Input.Password />
+            <Input.Password maxLength={12} />
           </Form.Item>
 
           <Form.Item
+            className=""
             labelAlign="left"
             name="confirm"
             label="Confirm Password"
@@ -280,7 +283,7 @@ const Register = () => {
               }),
             ]}
           >
-            <Input.Password />
+            <Input.Password maxLength={12} />
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>

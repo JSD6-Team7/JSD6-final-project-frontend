@@ -11,13 +11,14 @@ import ActivityHeader from "./ActivityHeader";
 import { Flex } from "antd";
 import { Content } from "antd/es/layout/layout";
 
-const protocal = import.meta.env.VITE_HTTP_PROTOCAL;
-const domain = import.meta.env.VITE_DOMAIN;
-const port = import.meta.env.VITE_PORT;
-
-console.log(protocal);
-console.log(domain);
-console.log(port);
+const apiKeyGetActivityInfo = import.meta.env
+  .VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
+const apiKeyCreateActivityInfo = import.meta.env
+  .VITE_REACT_APP_API_KEY_CREATE_ACTIVITY_INFO;
+const apiKeyDeleteActivityInfo = import.meta.env
+  .VITE_REACT_APP_API_KEY_DELETE_ACTIVITY_INFO;
+const apiKeyUpdateActivityInfo = import.meta.env
+  .VITE_REACT_APP_API_KEY_UPDATE_ACTIVITY_INFO;
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
@@ -51,13 +52,9 @@ function ActivityList() {
     console.log(selectedDate);
     const userID_selectedDate = { user_id, selectedDate };
     axios
-      .post(
-        `${protocal}://${domain}:${port}/activityInfoGetData`,
-        userID_selectedDate,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .post(apiKeyGetActivityInfo, userID_selectedDate, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         console.log(response.data);
         setActivityItems((prev) => {
@@ -76,7 +73,7 @@ function ActivityList() {
     const newActivity = { ...item, user_id };
     console.log(newActivity.date);
     axios
-      .post(`${protocal}://${domain}:${port}/activityInfo`, newActivity, {
+      .post(apiKeyCreateActivityInfo, newActivity, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -91,7 +88,7 @@ function ActivityList() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`${protocal}://${domain}:${port}/activityInfo/${id}`, {
+      .delete(`${apiKeyDeleteActivityInfo}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -109,7 +106,7 @@ function ActivityList() {
   const updateItem = (item) => {
     console.log(item);
     axios
-      .put(`${protocal}://${domain}:${port}/activityInfo`, item, {
+      .put(apiKeyUpdateActivityInfo, item, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
