@@ -1,60 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { PlusCircleFilled, MinusCircleFilled } from "@ant-design/icons";
+// import React, { useEffect, useState } from 'react';
+import { Button, Modal } from "antd";
+import { PlusCircleFilled, MinusCircleFilled, EditOutlined, DeleteOutlined, ExclamationCircleFilled } from '@ant-design/icons'
 
-const Accordion = ({ items, keepOthersOpen }) => {
-  const [accordionItems, setAccordionItems] = useState(null);
+const emptyFields = {
+  video: "",
+  label: "",
+  descriptions: "",
+};
 
-  useEffect(() => {
-    if (items) {
-      setAccordionItems([
-        ...items.map((item) => ({
-          ...item,
-          toggled: false,
-        })),
-      ]);
-    }
-  }, [items]);
+const Accordion = ( { keepOthersOpen, accordionItems, setAccordionItems, deleteItem, setFormDisplay } ) => {
 
   function handleAccordionToggle(clickedItem) {
     setAccordionItems(
       accordionItems.map((item) => {
         let toggled = item.toggled;
 
-        if (clickedItem.id === item.id) {
-          toggled = !item.toggled;
+        if (clickedItem._id === item._id) {
+          toggled = !item.toggled
         } else if (!keepOthersOpen) {
           toggled = false;
         }
-
-        return {
+        return  {
           ...item,
           toggled,
         };
       })
-    );
-  }
+    ])
+  };
+
+  const showDeleteConfirm = (id) => {
+    Modal.confirm({
+      title: "Are you sure to delete this activity?",
+      icon: <ExclamationCircleFilled />,
+      centered: true,
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        deleteItem(id);
+      },
+    });
+  };
 
   return (
     <div className="accordion-parent">
       <div className="headunderline">
         <h2 className="headunderline-item">Video Tutorial</h2>
         <div>
-          <button className="headunderline-button">+ Video</button>
+          <Button 
+            ghost          
+            className='headunderline-button'          
+            onClick={() => setFormDisplay({ ...emptyFields })}
+          >
+            + Video
+          </Button>
         </div>
       </div>
+      {console.log(accordionItems)}
       {accordionItems?.map((listItem, key) => {
         return (
-          <div
-            class={`accordion ${listItem.toggled ? "toggled" : ""}`}
-            key={key}
-          >
-            <button
-              className="toggle"
-              onClick={() => handleAccordionToggle(listItem)}
-            >
-              <div className="labelcard">
-                <div className="number-highlighted">
-                  <p>{listItem.index + 1}</p>
+          
+          <div className={`accordion ${listItem.toggled ? 'toggled' : ''}`} key={key}>
+            <button className='toggle' onClick={() => handleAccordionToggle(listItem)}>
+              <div className='labelcard'>
+                <div className='number-highlighted'>
+                  <p>{key + 1}</p>
                 </div>
                 <p className="labelheadline">{listItem.label}</p>
               </div>
@@ -66,20 +76,22 @@ const Accordion = ({ items, keepOthersOpen }) => {
                 )}
               </div>
             </button>
-            <div className="content-parent">
-              <div className="content">
-                <iframe
-                  src={listItem.video}
-                  width="784"
-                  height="441"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
+            <div className='content-parent'>
+              <div className='content'>
+                <iframe src={listItem.video} width="784" height="441" frameBorder="0" allowFullScreen={true}></iframe>
                 <div className="sub-content-head">
-                  <label>Descriptions:</label>
-                  <div className="sub-content-des">
-                    <p>{listItem.descriptions}</p>
+                  <label>Descriptions:</label> 
+                  <div className="button-section">
+                    <Button className="penbutton" onClick={() => setFormDisplay({ ...listItem })}>
+                      <EditOutlined />
+                    </Button>
+                    <Button className="binbutton" onClick={() => showDeleteConfirm(listItem._id)}>
+                      <DeleteOutlined />
+                    </Button>
                   </div>
+                </div>
+                <div className="sub-content-des">
+                      <p>{listItem.descriptions}</p>
                 </div>
               </div>
             </div>
