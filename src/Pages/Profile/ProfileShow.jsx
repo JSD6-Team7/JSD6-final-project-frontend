@@ -11,9 +11,33 @@ import { Button, Flex } from "antd";
 import Img from "../../assets/profile.jpg";
 import ProfileBanner from "../../assets/background-profile.png";
 import "./Profile.css";
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
 const ProfileShow = () => {
   const { Title, Text, Link } = Typography;
+  const [userData, setUserData] = useState(null);
+
+
+  useEffect(() => {
+    const url = 'http://localhost:3000/users/1';
+
+    axios.get(url)
+      .then((response) => {
+        setUserData(response.data.user);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
+
+  if (!userData) {
+    return <p>Loading user data...</p>;
+  }
+
+
+ 
+
   return (
     <>
       <div className="card">
@@ -29,7 +53,7 @@ const ProfileShow = () => {
             }}
           >
             <img
-              src={Img}
+              src={userData.avatar}
               alt="Profile"
               style={{
                 marginTop: 8,
@@ -45,10 +69,10 @@ const ProfileShow = () => {
             style={{ marginTop: 105, marginLeft: 180, position: "absolute" }}
           >
             <Title style={{ fontSize: "30px", marginTop: 120, marginLeft: 35 }}>
-              Oilvia Rhye
+              {userData.username}
             </Title>
             <Text type="secondary" style={{ marginLeft: 35 }}>
-              demo@gmail.com
+              {userData.email}
             </Text>
           </div>
           {/* <div className="button-show" style={{ marginTop: 60, marginLeft: 220, position: "absolute" }}> */}
