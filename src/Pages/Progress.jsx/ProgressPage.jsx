@@ -36,7 +36,8 @@ function ProgressPage() {
   };
 
   const getActivityInfo = () => {
-    const apiKeyGetActivityInfo = import.meta.env.VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
+    const apiKeyGetActivityInfo = import.meta.env
+      .VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
     const userID_queryDate = { user_id, selectedDate: queryDate };
 
     axios
@@ -65,17 +66,15 @@ function ProgressPage() {
         <div className="head">
           <h2>Progress</h2>
           {date()}
-          <div style={{ "margin-top": "10px" }}>
+          <div style={{ marginTop: "10px" }}>
             <DatePicker
               onChange={onSelectedDateChange}
               defaultValue={dayjs(new Date())}
             />
           </div>
         </div>
-        <ProgressChart 
-          queryDate={queryDate}
-        />
-        <Content style={{ height: "390px", width: "auto",overflow: "auto" }}>
+        <ProgressChart queryDate={queryDate} />
+        <Content style={{ height: "390px", width: "auto", overflow: "auto" }}>
           {activityItems.map((item, index) => {
             return (
               <ProgressActivityCard

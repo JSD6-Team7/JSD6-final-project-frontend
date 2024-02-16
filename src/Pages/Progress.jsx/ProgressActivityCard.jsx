@@ -16,13 +16,13 @@ function ProgressActivityCard({ index, eachCardItem }) {
             <div className="progress__card__goal">
               Goal:
               <br />
-              {eachCardItem.hourGoal} Hour {eachCardItem.minuteGoal} Min
+              {eachCardItem.hourGoal} Hours {eachCardItem.minuteGoal} Mins
             </div>
             <div className="progress__card__goal">
               Actual:
               <br />
-              {Math.floor(eachCardItem.actualTime / 3600)} Hour{" "}
-              {Math.floor((eachCardItem.actualTime / 60) % 60)} Min
+              {Math.floor(eachCardItem.actualTime / 3600)} Hours{" "}
+              {Math.floor((eachCardItem.actualTime / 60) % 60)} Mins
             </div>
           </div>
         </div>
