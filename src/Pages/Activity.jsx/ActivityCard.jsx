@@ -95,7 +95,7 @@ function ActivityCard({
       <div className="activityCard-card-content">
         <div className="activityCard-card-topContent">
           <div className="activityCard-card-topContent-left">
-            Goal:{eachCardItem.hourGoal} Hours {eachCardItem.minuteGoal} Mins
+            Goal: {eachCardItem.hourGoal} Hours {eachCardItem.minuteGoal} Mins
           </div>
           <div className="activityCard-card-topContent-right">
             <div className="activityCard-card-topContent-right-timeCounting">
