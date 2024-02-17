@@ -12,13 +12,8 @@ import { Flex } from "antd";
 import { Content } from "antd/es/layout/layout";
 
 const apiKeyGetActivityInfo = import.meta.env
-  .VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
-const apiKeyCreateActivityInfo = import.meta.env
-  .VITE_REACT_APP_API_KEY_CREATE_ACTIVITY_INFO;
-const apiKeyDeleteActivityInfo = import.meta.env
-  .VITE_REACT_APP_API_KEY_DELETE_ACTIVITY_INFO;
-const apiKeyUpdateActivityInfo = import.meta.env
-  .VITE_REACT_APP_API_KEY_UPDATE_ACTIVITY_INFO;
+  .VITE_REACT_APP_API_KEY_GET_ACTIVITY_INFO;
+const apiKeyActivityInfo = import.meta.env.VITE_REACT_APP_API_KEY_ACTIVITY_INFO;
 
 function ActivityList() {
   const [activityItems, setActivityItems] = useState([]);
@@ -36,7 +31,6 @@ function ActivityList() {
   }, []);
 
   useEffect(() => {
-    console.log(formDisplay);
     if (formDisplay) {
       setIsFormOpen(true);
     }
@@ -49,7 +43,6 @@ function ActivityList() {
   }, [selectedDate]);
 
   const getActivityInfo = () => {
-    console.log(selectedDate);
     const userID_selectedDate = { user_id, selectedDate };
     axios
       .post(apiKeyGetActivityInfo, userID_selectedDate, {
@@ -73,7 +66,7 @@ function ActivityList() {
     const newActivity = { ...item, user_id };
     console.log(newActivity.date);
     axios
-      .post(apiKeyCreateActivityInfo, newActivity, {
+      .post(apiKeyActivityInfo, newActivity, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -88,7 +81,7 @@ function ActivityList() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`${apiKeyDeleteActivityInfo}/${id}`, {
+      .delete(`${apiKeyActivityInfo}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -106,7 +99,7 @@ function ActivityList() {
   const updateItem = (item) => {
     console.log(item);
     axios
-      .put(apiKeyUpdateActivityInfo, item, {
+      .put(apiKeyActivityInfo, item, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

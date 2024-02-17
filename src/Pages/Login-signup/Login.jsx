@@ -18,7 +18,6 @@ const Login = () => {
   };
   const navigate = useNavigate();
   const onFinish = (values) => {
-    console.log("Success:", values);
     axios
       .post(apiKeyLogin, values)
       .then((response) => {

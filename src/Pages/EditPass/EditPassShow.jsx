@@ -1,7 +1,12 @@
 import "./EditPass.css";
 import { Button, Form, Input, DatePicker } from "antd";
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
+
+const userString = localStorage.getItem("user");
+const userObject = JSON.parse(userString);
+const id = userObject.user_id;
+const token = userObject.token;
 
 const EditPassShow = () => {
   const [componentSize, setComponentSize] = useState("default");
@@ -10,46 +15,44 @@ const EditPassShow = () => {
     setComponentSize(size);
   };
 
-  const [userData, setUserData] = useState(null); 
-  const [loading, setLoading] = useState(false); 
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values) => {
-    console.log('test')
+    console.log("test");
     try {
-      setLoading(true); 
+      setLoading(true);
 
-   
       const updatedUserData = {
-        id: 1,
+        id: id,
         password: newPassword,
-        
       };
 
-      const response = await axios.put('http://localhost:3000/users/editpassword', updatedUserData);
+      const response = await axios.put(
+        "http://localhost:3000/users/editpassword",
+        updatedUserData
+      );
 
-      message.success('Profile updated successfully!');
-      
+      message.success("Profile updated successfully!");
     } catch (error) {
-      console.error('Error updating user data:', error);
-      message.error('An error occurred while updating your profile.');
+      console.error("Error updating user data:", error);
+      message.error("An error occurred while updating your profile.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
-
   useEffect(() => {
-    const url = 'http://localhost:3000/member/1';
-
-    axios.get(url)
+    const url = `http://localhost:3000/users/${id}`;
+    axios
+      .get(url)
       .then((response) => {
         setUserData(response.data.user);
-        setName(userData.username)
       })
       .catch((error) => {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       });
-  }, []); 
+  }, []);
 
   if (!userData) {
     return <p>Loading user data...</p>;
@@ -59,9 +62,7 @@ const EditPassShow = () => {
     <>
       <div className="card">
         <h2 style={{ marginBottom: 40 }}>Edit Password</h2>
-        <Form
-          Form onFinish={onSubmit} loading={loading}
-        >
+        <Form Form onFinish={onSubmit} loading={loading}>
           <Form.Item
             label="Old Password"
             name="oldpassword"
@@ -96,7 +97,13 @@ const EditPassShow = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your New Password!",
+                message: "Please confirm your New Password!",
+                validator: (_, value) => {
+                  if (!newPassword || newPassword !== value) {
+                    return Promise.reject("Passwords do not match!");
+                  }
+                  return Promise.resolve();
+                },
               },
             ]}
             onChange={(e) => setNewPassword(e.target.value)}

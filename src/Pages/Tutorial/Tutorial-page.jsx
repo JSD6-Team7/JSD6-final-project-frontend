@@ -6,11 +6,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const apiKeyGetTutorials = import.meta.env
-  .VITE_REACT_APP_API_KEY_TUTORIALS_INFO;
+  .VITE_REACT_APP_API_KEY_GET_TUTORIALS_INFO;
 const apiKeyCreateTutorials = import.meta.env
   .VITE_REACT_APP_API_KEY_CREATE_TUTORIALS_INFO;
-const apiKeyDeleteUpdateTutorials = import.meta.env
-  .VITE_REACT_APP_API_KEY_DELETE_UPDATE_TUTORIALS_INFO;
+const apiKeyDeleteTutorials = import.meta.env
+  .VITE_REACT_APP_API_KEY_DELETE_TUTORIALS_INFO;
+const apiKeyUpdateTutorials = import.meta.env
+  .VITE_REACT_APP_API_KEY_UPDATE_TUTORIALS_INFO;
 
 function TutorialPage() {
   const [accordionItems, setAccordionItems] = useState(null);
@@ -82,7 +84,7 @@ function TutorialPage() {
 
   const deleteItem = (id) => {
     axios
-      .delete(`${apiKeyDeleteUpdateTutorials}/${id}`, {
+      .delete(`${apiKeyDeleteTutorials}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -102,7 +104,7 @@ function TutorialPage() {
     const swapUrl = item.video.replace("watch?v=", "embed/");
     const newVideo = { ...item, video: swapUrl };
     axios
-      .put(apiKeyDeleteUpdateTutorials, newVideo, {
+      .put(apiKeyUpdateTutorials, newVideo, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

@@ -11,32 +11,34 @@ import { Button, Flex } from "antd";
 import Img from "../../assets/profile.jpg";
 import ProfileBanner from "../../assets/background-profile.png";
 import "./Profile.css";
-import axios from 'axios';
+import axios from "axios";
 import { useEffect, useState } from "react";
+
+const userString = localStorage.getItem("user");
+const userObject = JSON.parse(userString);
+const id = userObject.user_id;
+const token = userObject.token;
 
 const ProfileShow = () => {
   const { Title, Text, Link } = Typography;
   const [userData, setUserData] = useState(null);
 
-
   useEffect(() => {
-    const url = 'http://localhost:3000/users/1';
-
-    axios.get(url)
+    const url = `http://localhost:3000/users/${id}`;
+    console.log(url);
+    axios
+      .get(url)
       .then((response) => {
         setUserData(response.data.user);
       })
       .catch((error) => {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       });
   }, []);
 
   if (!userData) {
     return <p>Loading user data...</p>;
   }
-
-
- 
 
   return (
     <>
@@ -90,7 +92,7 @@ const ProfileShow = () => {
               position: "absolute",
             }}
           >
-            Weight :52 km
+            Weight: {userData.weight} kg
           </Button>
           <Button
             type="primary"
@@ -102,7 +104,7 @@ const ProfileShow = () => {
               position: "absolute",
             }}
           >
-            Height : 169 CM
+            Height: {userData.height} cm
           </Button>
           <Button
             type="primary"
@@ -114,7 +116,12 @@ const ProfileShow = () => {
               position: "absolute",
             }}
           >
-            BMI : 22
+            BMI :{" "}
+            {Math.floor(
+              (userData.weight / (userData.height * userData.height)) *
+                10000 *
+                100
+            ) / 100}
           </Button>
           <div></div>
           {/* </div> */}
