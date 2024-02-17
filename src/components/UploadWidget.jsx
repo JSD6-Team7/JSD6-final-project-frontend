@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Form, Input, DatePicker, Select } from "antd";
 import axios from "axios";
 
-const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
-
 const UploadWidget = () => {
   const cloudinaryRef = useRef();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null); // Initial user data
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const id = userObject.user_id;
+  const token = userObject.token;
+
   const widgetRef = useRef();
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;

@@ -9,11 +9,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
-
 const EditEmailShow = () => {
   const navigate = useNavigate();
   const [componentSize, setComponentSize] = useState("default");
@@ -24,7 +19,10 @@ const EditEmailShow = () => {
   const [userData, setUserData] = useState(null);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const id = userObject.user_id;
+  const token = userObject.token;
   useEffect(() => {
     const url = `http://localhost:3000/users/${id}`;
     axios

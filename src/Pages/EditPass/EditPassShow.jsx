@@ -3,11 +3,6 @@ import { Button, Form, Input, DatePicker } from "antd";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
-
 const EditPassShow = () => {
   const [componentSize, setComponentSize] = useState("default");
   const [newPassword, setNewPassword] = useState("");
@@ -17,6 +12,11 @@ const EditPassShow = () => {
 
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const id = userObject.user_id;
+  const token = userObject.token;
 
   const onSubmit = async (values) => {
     console.log("test");

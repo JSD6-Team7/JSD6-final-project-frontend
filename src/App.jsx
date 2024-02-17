@@ -9,6 +9,7 @@ import TutorialPage from "./Pages/Tutorial/Tutorial-page";
 import ProgressPage from "./Pages/Progress.jsx/ProgressPage";
 import Login from "./Pages/Login-signup/Login";
 import Register from "./Pages/Login-signup/Register";
+import Landingpage from "./Pages/Landingpage/landingpage.jsx"
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
             <Route path="/progress" element={<ProgressPage />} />
             <Route path="/videoTutorial" element={<TutorialPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<Register />} />s
+            <Route path="/landingpage" element={<Landingpage />} />
+
         </Routes>
       </BrowserRouter>
     </div>

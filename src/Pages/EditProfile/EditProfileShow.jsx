@@ -22,10 +22,6 @@ import Img from "../../assets/profile.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
 
 const EditProfileShow = () => {
   const [publicId, setPublicId] = useState("");
@@ -34,6 +30,14 @@ const EditProfileShow = () => {
   // Replace with your own upload preset
   const [uploadPreset] = useState("kwoevm4v");
   const navigate = useNavigate();
+
+
+  
+const userString = localStorage.getItem("user");
+const userObject = JSON.parse(userString);
+const id = userObject.user_id;
+const token = userObject.token;
+
 
   const [userData, setUserData] = useState(null); // Initial user data
   const [name, setName] = useState(""); // Initial user data
