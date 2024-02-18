@@ -41,8 +41,11 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-appLogo">
-        <p>logo picture</p>
-        <p>Exercise</p>
+        <img
+          src="https://i.ibb.co/0ZMXTgJ/logo-corgifit.png"
+          alt="CorgiFit Logo"
+          style={{ height: "64px", paddingTop: "5px", weight: "64px" }}
+        />
       </div>
       <div className="sidebar-menu">
         <Menu mode="vertical" items={items} onClick={onMenuClick} />
