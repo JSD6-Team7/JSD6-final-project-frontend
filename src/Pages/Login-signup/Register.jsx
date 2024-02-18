@@ -161,7 +161,7 @@ const Register = () => {
                 </div>
               </div>
             </Link>
-            <Link to="/Register" style={{ flex: "1 1 0", margin: "32px" }}>
+            <Link to="/signup" style={{ flex: "1 1 0", margin: "32px" }}>
               <div
                 style={{
                   flex: "1 1 0",

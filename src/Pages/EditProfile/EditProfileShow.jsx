@@ -22,6 +22,9 @@ import Img from "../../assets/profile.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const apiKeyUserGetInfo = import.meta.env.VITE_REACT_APP_API_KEY_USER_GET_INFO;
+const apiKeyUserInfoUpdate = import.meta.env
+  .VITE_REACT_APP_API_KEY_USER_INFO_UPDATE;
 
 const EditProfileShow = () => {
   const [publicId, setPublicId] = useState("");
@@ -31,13 +34,10 @@ const EditProfileShow = () => {
   const [uploadPreset] = useState("kwoevm4v");
   const navigate = useNavigate();
 
-
-  
-const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
-
+  const userString = localStorage.getItem("user");
+  const userObject = JSON.parse(userString);
+  const id = userObject.user_id;
+  const token = userObject.token;
 
   const [userData, setUserData] = useState(null); // Initial user data
   const [name, setName] = useState(""); // Initial user data
@@ -73,7 +73,7 @@ const token = userObject.token;
 
   const myImage = cld.image(publicId);
   useEffect(() => {
-    const url = `http://localhost:3000/users/${id}`;
+    const url = `${apiKeyUserGetInfo}/${id}`;
 
     axios
       .get(url)
@@ -103,7 +103,7 @@ const token = userObject.token;
       };
 
       const response = await axios
-        .put("http://localhost:3000/users/update", updatedUserData)
+        .put(apiKeyUserInfoUpdate, updatedUserData)
         .then((response) => {
           if (response.status === 200) {
             message.success("Profile updated successfully!");

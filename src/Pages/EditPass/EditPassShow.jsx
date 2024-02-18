@@ -3,6 +3,10 @@ import { Button, Form, Input, DatePicker } from "antd";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const apiKeyUserGetInfo = import.meta.env.VITE_REACT_APP_API_KEY_USER_GET_INFO;
+const apiKeyUserPasswordUpdate = import.meta.env
+  .VITE_REACT_APP_API_KEY_USER_PASSWORD_UPDATE;
+
 const EditPassShow = () => {
   const [componentSize, setComponentSize] = useState("default");
   const [newPassword, setNewPassword] = useState("");
@@ -29,7 +33,7 @@ const EditPassShow = () => {
       };
 
       const response = await axios.put(
-        "http://localhost:3000/users/editpassword",
+        apiKeyUserPasswordUpdate,
         updatedUserData
       );
 
@@ -43,7 +47,7 @@ const EditPassShow = () => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:3000/users/${id}`;
+    const url = `${apiKeyUserGetInfo}/${id}`;
     axios
       .get(url)
       .then((response) => {

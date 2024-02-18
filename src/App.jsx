@@ -9,24 +9,23 @@ import TutorialPage from "./Pages/Tutorial/Tutorial-page";
 import ProgressPage from "./Pages/Progress.jsx/ProgressPage";
 import Login from "./Pages/Login-signup/Login";
 import Register from "./Pages/Login-signup/Register";
-import Landingpage from "./Pages/Landingpage/landingpage.jsx"
+import Landingpage from "./Pages/Landingpage/landingpage.jsx";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<ActivityList />} />
+          <Route path="/activityList" element={<ActivityList />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/editProfile" element={<EditProfile />} />
           <Route path="/editPassword" element={<EditPass />} />
           <Route path="/editEmail" element={<EditEmail />} />
-            <Route path="/progress" element={<ProgressPage />} />
-            <Route path="/videoTutorial" element={<TutorialPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />s
-            <Route path="/landingpage" element={<Landingpage />} />
-
+          <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/videoTutorial" element={<TutorialPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/" element={<Landingpage />} />
         </Routes>
       </BrowserRouter>
     </div>

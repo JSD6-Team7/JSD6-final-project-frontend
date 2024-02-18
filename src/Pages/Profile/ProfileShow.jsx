@@ -14,21 +14,19 @@ import "./Profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
+const apiKeyUserGetInfo = import.meta.env.VITE_REACT_APP_API_KEY_USER_GET_INFO;
 
 const ProfileShow = () => {
   const { Title, Text, Link } = Typography;
   const [userData, setUserData] = useState(null);
 
-
   const userString = localStorage.getItem("user");
-const userObject = JSON.parse(userString);
-const id = userObject.user_id;
-const token = userObject.token;
-
+  const userObject = JSON.parse(userString);
+  const id = userObject.user_id;
+  const token = userObject.token;
 
   useEffect(() => {
-    const url = `http://localhost:3000/users/${id}`;
+    const url = `${apiKeyUserGetInfo}/${id}`;
     console.log(url);
     axios
       .get(url)

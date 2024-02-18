@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu, Button } from "antd";
 
-
 function Navbarja() {
   return (
     <div>
@@ -10,9 +9,9 @@ function Navbarja() {
         style={{
           display: "flex",
           justifyContent: "center",
-          gap:'10px',
+          gap: "10px",
           background: "white",
-// Ensure background is set on Menu too
+          // Ensure background is set on Menu too
         }}
         key="logo"
       >
@@ -54,7 +53,7 @@ function Navbarja() {
               marginTop: "10px",
             }}
           >
-           <a href="./signup">Free Access</a>
+            <a href="/signup">Free Access</a>
           </Button>
         </Menu.Item>
       </Menu>
