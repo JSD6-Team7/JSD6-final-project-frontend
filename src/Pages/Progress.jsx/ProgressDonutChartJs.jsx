@@ -8,7 +8,7 @@ const ProgressDonutChartJs = ({ activitysListbyTypes }) => {
   const durationByTypes = [];
   const labelByTypes = [];
   for (let i = 0; i < activitysListbyTypes.length; i++) {
-    durationByTypes.push(activitysListbyTypes[i].total_duration);
+    durationByTypes.push(Number(activitysListbyTypes[i].total_duration) / 60).toFixed(1);
     labelByTypes.push(activitysListbyTypes[i]._id);
   }
 
