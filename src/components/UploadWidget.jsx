@@ -28,7 +28,6 @@ const UploadWidget = () => {
           // () => setImage(result.info.secure_url);
           onSubmit(result.info.secure_url);
         }
-        //   console.log(result.url);
       }
     );
   }, []);
