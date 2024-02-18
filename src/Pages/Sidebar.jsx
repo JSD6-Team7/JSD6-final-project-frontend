@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const items = [
-  { label: "Activity", key: "", icon: <FileTextOutlined /> },
+  { label: "Activity", key: "activityList", icon: <FileTextOutlined /> },
   {
     label: "Video Tutorial",
     key: "videoTutorial",
