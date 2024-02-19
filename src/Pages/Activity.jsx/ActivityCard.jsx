@@ -77,7 +77,7 @@ function ActivityCard({
       ...item,
       actualTime: time,
     };
-    console.log(itemUpdatedTime);
+    // console.log(itemUpdatedTime);
     setIsRunning(false);
     setIsFinish(true);
     updateItem(itemUpdatedTime);

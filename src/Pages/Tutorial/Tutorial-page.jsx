@@ -40,7 +40,7 @@ function TutorialPage() {
   }, []);
 
   useEffect(() => {
-    console.log(formDisplay);
+    // console.log(formDisplay);
     if (formDisplay) {
       setIsFormOpen(true);
     }
@@ -64,7 +64,7 @@ function TutorialPage() {
   };
 
   const createItem = (item) => {
-    console.log(item);
+    // console.log(item);
     const swapUrl = item.video.replace("watch?v=", "embed/");
     const newVideo = { ...item, user_id, video: swapUrl };
     axios
@@ -73,7 +73,7 @@ function TutorialPage() {
       })
       .then((response) => {
         if (response.status === 201) {
-          console.log(response.data);
+          // console.log(response.data);
           getVideoInfo();
         }
       })
@@ -91,7 +91,7 @@ function TutorialPage() {
         if (response.status === 200) {
           getVideoInfo();
         } else {
-          console.log(`Response from API : ${response.json}`);
+          // console.log(`Response from API : ${response.json}`);
         }
       })
       .catch((error) => {
@@ -100,7 +100,7 @@ function TutorialPage() {
   };
 
   const updateItem = (item) => {
-    console.log(item);
+    // console.log(item);
     const swapUrl = item.video.replace("watch?v=", "embed/");
     const newVideo = { ...item, video: swapUrl };
     axios

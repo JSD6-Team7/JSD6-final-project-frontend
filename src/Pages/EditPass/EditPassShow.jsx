@@ -23,7 +23,7 @@ const EditPassShow = () => {
   const token = userObject.token;
 
   const onSubmit = async (values) => {
-    console.log("test");
+    // console.log("test");
     try {
       setLoading(true);
 

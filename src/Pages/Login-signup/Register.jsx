@@ -58,7 +58,7 @@ const Register = () => {
       .post(apiKeySignup, values)
       .then((response) => {
         if (response.status === 200) {
-          console.log(`Response from API : ${response.data}`);
+          // console.log(`Response from API : ${response.data}`);
           navigate("/login");
         }
       })

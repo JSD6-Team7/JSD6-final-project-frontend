@@ -17,7 +17,7 @@ function ActivityHeader({ setFormDisplay, setSelectedDate }) {
   };
 
   const onSelectedDateChange = (date) => {
-    console.log(date);
+    // console.log(date);
     setSelectedDate(date);
   };
 

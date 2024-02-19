@@ -49,7 +49,7 @@ function ActivityList() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setActivityItems((prev) => {
           return response.data.map((each) => {
             return { ...each, date: dayjs(each.date) };
@@ -62,9 +62,9 @@ function ActivityList() {
   };
 
   const createItem = (item) => {
-    console.log(item);
+    // console.log(item);
     const newActivity = { ...item, user_id };
-    console.log(newActivity.date);
+    // console.log(newActivity.date);
     axios
       .post(apiKeyActivityInfo, newActivity, {
         headers: { Authorization: `Bearer ${token}` },
@@ -88,7 +88,7 @@ function ActivityList() {
         if (response.status === 200) {
           getActivityInfo();
         } else {
-          console.log(`Response from API : ${response.json}`);
+          // console.log(`Response from API : ${response.json}`);
         }
       })
       .catch((error) => {
@@ -97,7 +97,7 @@ function ActivityList() {
   };
 
   const updateItem = (item) => {
-    console.log(item);
+    // console.log(item);
     axios
       .put(apiKeyActivityInfo, item, {
         headers: { Authorization: `Bearer ${token}` },

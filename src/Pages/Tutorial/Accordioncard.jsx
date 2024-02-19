@@ -67,7 +67,7 @@ const Accordion = ({
           </Button>
         </div>
       </div>
-      {console.log(accordionItems)}
+      {/* {console.log(accordionItems)} */}
       {accordionItems?.map((listItem, key) => {
         return (
           <div
