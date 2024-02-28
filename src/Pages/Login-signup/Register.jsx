@@ -106,6 +106,7 @@ const Register = () => {
           style={{
             maxWidth: 600,
           }}
+          validateTrigger="onBlur"
           scrollToFirstError
         >
           <div
@@ -121,7 +122,6 @@ const Register = () => {
             }}
           >
             <h1>Welcome!</h1>
-            <p>Please Enter your detail.</p>
           </div>
 
           <div
@@ -201,6 +201,10 @@ const Register = () => {
                 message: "Please input your Username!",
                 whitespace: true,
               },
+              {
+                min: 8,
+                message: "Value should be at least 8 characters",
+              },
             ]}
           >
             <Input />
@@ -215,14 +219,18 @@ const Register = () => {
                 required: true,
                 message: "Please input your phone number!",
               },
+              {
+                pattern: /\d+/g,
+                message: "Please input only number!",
+              },
             ]}
           >
             <Input
               addonBefore={prefixSelector}
-              maxLength={10}
               style={{
                 width: "100%",
               }}
+              maxLength={10}
             />
           </Form.Item>
 
@@ -253,14 +261,17 @@ const Register = () => {
                 required: true,
                 message: "Please input your password!",
               },
+              {
+                pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}$/,
+                message: `Password must contain at least 1 number , 1 lowercase letter, 1 uppercase letter, and must be 8-16 characters long.`,
+              },
             ]}
             hasFeedback
           >
-            <Input.Password maxLength={12} />
+            <Input.Password />
           </Form.Item>
 
           <Form.Item
-            className=""
             labelAlign="left"
             name="confirm"
             label="Confirm Password"
@@ -273,6 +284,7 @@ const Register = () => {
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
+                  console.log(value);
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
@@ -283,7 +295,7 @@ const Register = () => {
               }),
             ]}
           >
-            <Input.Password maxLength={12} />
+            <Input.Password maxLength={15} />
           </Form.Item>
 
           <Form.Item {...tailFormItemLayout}>

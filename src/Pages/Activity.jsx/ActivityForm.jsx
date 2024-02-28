@@ -125,7 +125,7 @@ function ActivityForm({
                 className="duration"
                 name="hourGoal"
                 label="Hour"
-                rules={[{ required: true, type: "number", min: 1, max: 24 }]}
+                rules={[{ required: true, type: "number", min: 0, max: 23 }]}
               >
                 <InputNumber
                   className="duration-Input"
@@ -137,7 +137,7 @@ function ActivityForm({
                 className="duration"
                 name="minuteGoal"
                 label="Minute"
-                rules={[{ required: true, type: "number", min: 1, max: 59 }]}
+                rules={[{ required: true, type: "number", min: 0, max: 59 }]}
               >
                 <InputNumber
                   className="duration-Input"
