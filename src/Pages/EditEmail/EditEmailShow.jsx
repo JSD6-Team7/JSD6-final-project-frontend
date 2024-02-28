@@ -32,7 +32,7 @@ const EditEmailShow = () => {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setUserData(response.data.user);
         setName(userData.username);
       })
@@ -42,7 +42,7 @@ const EditEmailShow = () => {
   }, []); // No dependency array to run only once
 
   const onSubmit = async (values) => {
-    console.log("test");
+    // console.log("test");
     try {
       setLoading(true);
 

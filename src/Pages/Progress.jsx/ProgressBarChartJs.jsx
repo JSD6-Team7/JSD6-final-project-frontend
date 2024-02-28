@@ -6,7 +6,7 @@ const ProgressBarChartJs = ({ activitysListbyDate }) => {
   const dataBydate = [0, 0, 0, 0, 0, 0, 0];
 
   activitysListbyDate.map((item) => {
-    dataBydate[item._id.dayOfWeek - 1] = item.totalActualTime;
+    dataBydate[item._id.dayOfWeek - 1] = Number(item.totalActualTime / 60).toFixed(1);
   });
 
   const labels = [

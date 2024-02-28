@@ -50,7 +50,7 @@ function ActivityForm({
     setIsFormOpen(false);
   };
   const handleSubmitForm = (value) => {
-    console.log(value);
+    // console.log(value);
     if (formDisplay?._id) {
       updateItem({ ...value, _id: formDisplay._id });
       setFormDisplay(null);

@@ -8,7 +8,7 @@ import axios from "axios";
 const apiKeyLogin = import.meta.env.VITE_REACT_APP_API_KEY_LOGIN;
 
 const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
+  // console.log("Failed:", errorInfo);
 };
 const Login = () => {
   const alertWarning = (message) => {
@@ -21,7 +21,7 @@ const Login = () => {
     axios
       .post(apiKeyLogin, values)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           if (response.data.message) {
             const message = response.data.message;

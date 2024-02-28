@@ -27,7 +27,7 @@ const ProfileShow = () => {
 
   useEffect(() => {
     const url = `${apiKeyUserGetInfo}/${id}`;
-    console.log(url);
+    // console.log(url);
     axios
       .get(url)
       .then((response) => {
