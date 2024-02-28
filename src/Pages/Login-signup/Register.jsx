@@ -263,7 +263,7 @@ const Register = () => {
               },
               {
                 pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}$/,
-                message: `Password must contain at least 1 number , 1 lowercase letter, 1 uppercase letter, and must be 8-16 characters long.`,
+                message: `Password must contain at least 1 number , 1 lowercase letter, 1 uppercase letter, 1 special character, and must be 8-16 characters long.`,
               },
             ]}
             hasFeedback
