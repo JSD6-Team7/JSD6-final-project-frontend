@@ -159,13 +159,13 @@ const EditProfileShow = () => {
           <div className="box">
             <h5 style={{ marginLeft: 50 }}>Profile picture</h5>
             <UploadWidget refreshPage={refreshPage} />
-            <Button
+            {/* <Button
               onClick={() => refreshPage()}
               type="dashed"
               className="btn-image"
             >
               Clear Cache
-            </Button>
+            </Button> */}
           </div>
         </div>
 
