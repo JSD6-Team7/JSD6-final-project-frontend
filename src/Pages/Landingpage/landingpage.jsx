@@ -25,10 +25,10 @@ function App() {
         <ContentSlider />
       </div>
       <div>
-        <ContentSection />
+        {/* <ContentSection /> */}
       </div>
       <div>
-        <FitnessCTA />
+        {/* <FitnessCTA /> */}
       </div>
       <div>
         <AboutUsSection />

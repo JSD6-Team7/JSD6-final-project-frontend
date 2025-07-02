@@ -7,6 +7,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import logo from '../assets/logo.jpg';
 
 const items = [
   { label: "Activity", key: "activityList", icon: <FileTextOutlined /> },
@@ -42,9 +43,11 @@ function Sidebar() {
     <div className="sidebar">
       <div className="sidebar-appLogo">
         <img
-          src="https://i.ibb.co/0ZMXTgJ/logo-corgifit.png"
+          // src="https://i.ibb.co/0ZMXTgJ/logo-corgifit.png"
+          // src="https://i.ibb.co/nqKzJwrv/il-570x-N-4168481284-7sv6.jpg"
+          src={logo}
           alt="CorgiFit Logo"
-          style={{ height: "64px", paddingTop: "5px", weight: "64px" }}
+          style={{ height: "240px", paddingTop: "5px", weight: "64px" }}
         />
       </div>
       <div className="sidebar-menu">

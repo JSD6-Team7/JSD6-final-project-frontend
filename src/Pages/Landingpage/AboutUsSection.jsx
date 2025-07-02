@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Typography, Button } from "antd";
 const { Title, Paragraph } = Typography;
+import logo from '../../assets/logo.jpg';
 
 const AboutUsSection = () => {
   return (
@@ -18,10 +19,10 @@ const AboutUsSection = () => {
               <div className="blockquote">
                 <Paragraph>
                   <p>
-                    Your all-in-one fitness companion. Track any workout, from
-                    running to yoga, and <br></br> visualize your progress with detailed
-                    stats. Set achievable goals, receive personalized workout
-                    suggestions, and get motivated by your Corgi cheerleader!
+                    Your all-in-one fitness companion. Track any workout,  <br></br>
+                    from running to yoga,and visualize your progress with detailed stats.<br></br> 
+                    Set achievable goals,  receive personalized workout suggestions, 
+                    and get motivated by your Corgi cheerleader!
                   </p>
                 </Paragraph>
               </div>
@@ -38,11 +39,12 @@ const AboutUsSection = () => {
           <Col xs={24} lg={12}>
             <div className="image-container">
               <img
-                src="https://i.ibb.co/Ss3XDc1/Gemini-Generated-Image.jpg"
+                // src="https://i.ibb.co/Ss3XDc1/Gemini-Generated-Image.jpg"
+                src={logo}
                 alt="fitness"
                 style={{
                   width: "100%",
-                  maxWidth: "400px",
+                  maxWidth: "300px",
                   borderRadius: "8px",
                   pointerEvents: "none",
                   marginTop: 20,

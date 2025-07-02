@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Typography, Button } from "antd";
 const { Title, Paragraph } = Typography;
+import logo from '../../assets/logo.jpg';
 
 const AboutUsSection = () => {
   return (
@@ -41,11 +42,12 @@ const AboutUsSection = () => {
           <Col xs={24} lg={12}>
             <div className="image-container">
               <img
-                src="https://i.ibb.co/LzDFWBL/Img54.png"
+                // src="https://i.ibb.co/LzDFWBL/Img54.png"
+                src={logo}
                 alt="fitness"
                 style={{
                   width: "100%",
-                  maxWidth: "400px",
+                  maxWidth: "300px",
                   borderRadius: "8px",
                   pointerEvents: "none",
                   marginTop: 20,

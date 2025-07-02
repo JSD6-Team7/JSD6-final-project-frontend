@@ -15,13 +15,14 @@ function Navbarja() {
         }}
         key="logo"
       >
-        <Menu.Item key="logo">
+        {/* <Menu.Item key="logo">
           <img
-            src="https://i.ibb.co/0ZMXTgJ/logo-corgifit.png"
+            // src="https://i.ibb.co/0ZMXTgJ/logo-corgifit.png"
+            src="https://i.ibb.co/nqKzJwrv/il-570x-N-4168481284-7sv6.jpg"
             alt="CorgiFit Logo"
             style={{ height: "35px", paddingTop: "5px" }}
           />
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="home" style={{ color: "#45AE3A", paddingTop: "5px" }}>
           <a href="">Home</a>
         </Menu.Item>
